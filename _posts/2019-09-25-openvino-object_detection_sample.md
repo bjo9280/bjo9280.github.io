@@ -2,6 +2,7 @@
 title: "Optimizing and Inference Sample(SSD) for Windows - OpenVINO"
 date: 2019-09-25 00:00:00 +0900
 categories: OpenVINO
+toc: true
 ---
 
 > 윈도우에서 Neural Compute Stick2(NCS2)와 OpenVINO을 활용하여 Object Detecion모델을 최적화하여 Inference하는 방법

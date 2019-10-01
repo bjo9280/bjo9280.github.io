@@ -37,6 +37,8 @@ ubuntu16.04 + python3 설치
 
 공식github에서 docker에 설치를 권장
 
+For a listing of what these dependencies are, see the TensorFlow Serving Development Dockerfiles [[CPU](https://github.com/tensorflow/serving/blob/master/tensorflow_serving/tools/docker/Dockerfile.devel), [GPU](https://github.com/tensorflow/serving/blob/master/tensorflow_serving/tools/docker/Dockerfile.devel-gpu)]. 
+
 ## Bazel 설치
 
 Terving Server는 C++기반에 gRPC 인터페이스 기반  

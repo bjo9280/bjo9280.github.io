@@ -41,6 +41,10 @@ ubuntu16.04 + python3 설치
 
 Terving Server는 C++기반에 gRPC 인터페이스 기반  
 
+다양한 플랫폼에 설치할때
+
+여러가지 언어를 컴파일할때
+
 ```
 wget https://github.com/bazelbuild/bazel/releases/download/0.24.1/bazel-0.24.1-installer-linux-x86_64.sh
 ```

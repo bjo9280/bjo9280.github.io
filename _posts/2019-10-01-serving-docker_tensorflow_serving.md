@@ -1,6 +1,6 @@
 ---
 title: "Docker을 활용한 Tensorflow serving 예제"
-date: 2019-09-30 00:00:00 +0900
+date: 2019-10-01 00:00:00 +0900
 categories: Serving
 ---
 

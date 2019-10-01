@@ -29,6 +29,14 @@ chmod +x bazel-0.24.1-installer-linux-x86_64.sh
 export PATH="$PATH:$HOME/bin"
 ```
 
+## gRPC
+
+```
+pip install grpcio
+```
+
+
+
 ## TF-serving
 
 ```

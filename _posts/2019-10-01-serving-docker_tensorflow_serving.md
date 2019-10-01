@@ -35,7 +35,7 @@ curl -d '{"instances": [1.0, 2.0, 5.0]}' \
 
 ubuntu16.04 + python3 설치
 
-공식github에 docker에 설치를 권장
+공식github에서 docker에 설치를 권장
 
 ## Bazel 설치
 

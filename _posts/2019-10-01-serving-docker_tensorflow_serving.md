@@ -1,5 +1,5 @@
 ---
-title: "Tensorflow serving"
+title: "Serving a Tensorflow model - Tensorflow Serving"
 date: 2019-10-01 00:00:00 +0900
 categories: Serving
 ---
@@ -38,6 +38,8 @@ ubuntu16.04 + python3 설치
 공식github에 docker에 설치를 권장
 
 ## Bazel 설치
+
+Terving Server는 C++기반에 gRPC 인터페이스 기반  
 
 ```
 wget https://github.com/bazelbuild/bazel/releases/download/0.24.1/bazel-0.24.1-installer-linux-x86_64.sh

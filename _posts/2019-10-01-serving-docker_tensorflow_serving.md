@@ -1,5 +1,5 @@
 ---
-title: "Serving a Tensorflow Model in Docker -Tensorflow Serving"
+title: "Tensorflow Serving으로 학습모델 배포하기"
 date: 2019-10-01 00:00:00 +0900
 categories: Tensorflow Serving
 ---

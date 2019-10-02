@@ -15,7 +15,7 @@ categories: Tensorflow Serving
 
 Tensorflow serving api를 이용하여 serving하는 방법
 
-> <https://github.com/tensorflow/serving>
+> <https://github.com/tensorflow/serving> 참고
 
 ```
 # Download the TensorFlow Serving Docker image and repo
@@ -46,7 +46,7 @@ curl -d '{"instances": [1.0, 2.0, 5.0]}' \
 
 bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일할때 사용한다.
 
-> 설치방법은 <https://docs.bazel.build/versions/master/install-ubuntu.html>을 참고 
+> 설치방법은 <https://docs.bazel.build/versions/master/install-ubuntu.html> 참고 
 >
 
 * 필요한 packages 설치
@@ -129,7 +129,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기 
 
-> <https://docs.aws.amazon.com/ko_kr/dlami/latest/devguide/tutorial-tfserving.html#tutorial-tfserving-mnist> 
+> <https://docs.aws.amazon.com/ko_kr/dlami/latest/devguide/tutorial-tfserving.html#tutorial-tfserving-mnist> 참고
 
 * Inception모델, TEST이미지 다운로드
 

@@ -10,7 +10,7 @@ categories: Tensorflow Serving
 
 ## Tensorflow Serving이란?
 
-Tensorflow Serving는 C++기반에 gRPC 인터페이스 기반
+* Tensorflow serving api or bazel로 빌드하는 방식이 있음
 
 ## Serve a Tensorflow model in 60 seconds
 
@@ -39,8 +39,8 @@ Tensorflow Serving는 C++기반에 gRPC 인터페이스 기반
 
 ## Docker 설치
 
-* ubuntu16.04 + python3 설치
 * 공식 Gitbub에서 Tensorflow serving을 Docker에 설치하는 걸 권장
+* ubuntu16.04 + python3 설치
 
 ## Bazel 설치
 
@@ -83,7 +83,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
   pip install grpcio
   ```
 
-## TF-serving
+## Server / Client 실행
 
 * tensorflow serving clone
 
@@ -94,15 +94,17 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 * bazel build
 
    ```
-  cd serving
-  bazel build -c opt --local_resources 5000,1.0,1.0 tensorflow_serving/…
+     cd serving
+     bazel build -c opt --local_resources 5000,1.0,1.0 tensorflow_serving/…
    ```
 
-* mnist 학습파일 생성(도커에 생성하면 tensorflow가 설치되있지 않음)
+* mnist 학습 파일 생성 (Docker환경에 tensorflow가 설치되어 있지 않으므로 설치하거나 or 호스트환경에서 학습 후 학습파일을 옮김)
 
   ```
   python tensorflow_serving/example/mnist_saved_model.py /tmp/mnist_model
   ```
+
+* ifconfig로 docker환경의 ip확인(client 요청할때를 위해 확인)
 
 * tensorflow serving 서버실행
 
@@ -113,34 +115,114 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
   --model_base_path=/tmp/mnist_model/
   ```
 
+* cntl + p+ q 로 호스트환경으로 돌아오기
+
 * Client 요청
 
   ```
-  bazel-bin/tensorflow_serving/example/mnist_client --num_tests=1000 --server=localhost:9000
+  python mnist_client.py --num_tests=1000 --server=<Docker IP>:9000
+  ```
+  ![fig1](https://bjo9280.github.io/assets/images/2019-10-01/fig1.png)
+
+## Inception model 테스트
+
+AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기 
+
+<https://docs.aws.amazon.com/ko_kr/dlami/latest/devguide/tutorial-tfserving.html#tutorial-tfserving-mnist> 참고
+
+* Inception모델, TEST이미지 다운로드
+
+  ```
+  curl -O https://s3-us-west-2.amazonaws.com/aws-tf-serving-ei-example/inception.zip
+  curl -O https://upload.wikimedia.org/wikipedia/commons/b/b5/Siberian_Husky_bi-eyed_Flickr.jpg
   ```
 
+* 다운로드받은 모델을 원하는 위치에 압축해제
 
+* Server 실행
 
-## resnet sample
+  ```
+  bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server \
+  --port=9000 \
+  --model_name=inception \
+  --model_base_path=/tmp/SERVING_INCEPTION
+  ```
 
-docker설치
+* 편집기를 사용하여 inception_client.py 스크립트 생성
 
-bazel설치
+  ```
+  from __future__ import print_function
+  
+  import grpc
+  import tensorflow as tf
+  
+  from tensorflow_serving.apis import predict_pb2
+  from tensorflow_serving.apis import prediction_service_pb2_grpc
+  
+  
+  tf.app.flags.DEFINE_string('server', 'localhost:9000',
+                             'PredictionService host:port')
+  tf.app.flags.DEFINE_string('image', '', 'path to image in JPEG format')
+  FLAGS = tf.app.flags.FLAGS
+  
+  
+  def main(_):
+    channel = grpc.insecure_channel(FLAGS.server)
+    stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)
+    # Send request
+    with open(FLAGS.image, 'rb') as f:
+      # See prediction_service.proto for gRPC request/response details.
+      data = f.read()
+      request = predict_pb2.PredictRequest()
+      request.model_spec.name = 'inception'
+      request.model_spec.signature_name = 'predict_images'
+      request.inputs['images'].CopyFrom(
+          tf.contrib.util.make_tensor_proto(data, shape=[1]))
+      result = stub.Predict(request, 10.0)  # 10 secs timeout
+      print(result)
+    print("Inception Client Passed")
+  
+  if __name__ == '__main__':
+    tf.app.run()
+  ```
 
-serving clone
+  
 
-bazel build
+* client 요청으로 이미지 inference
 
-tensorflow.bzl
+  ```
+  python inception_client.py --server=<Docker IP>:9000 --image Siberian_Husky_bi-eyed_Flickr.jpg
+  ```
 
-pip install numpy ,
+  ![fig2](https://bjo9280.github.io/assets/images/2019-10-01/fig2.png)
 
-```
-pip install keras_applications==1.0.4 --no-deps
-pip install keras_preprocessing==1.0.2 --no-deps
-pip install h5py==2.8.0
-```
+  
 
-apt-get install autoconf automake libtool   
+## 여러 모델을 동시에 serving
 
-작성중
+* config file을 생성하고 model_config_file 옵션으로 server실행
+
+  ```
+  # /models/models.config
+  
+  model_config_list: {
+    config: {
+      name: "mnist",
+      base_path: "/tmp/mnist_model",
+      model_platform: "tensorflow"
+    },
+    config: {
+      name: "inception",
+      base_path: "/tmp/SERVING_INCEPTION",
+      model_platform: "tensorflow"
+    },
+  }
+  ```
+
+  ```
+  bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=9000 --model_config_file=/models/models.config
+  ```
+
+  
+
+  

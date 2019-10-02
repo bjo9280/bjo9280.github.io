@@ -226,10 +226,3 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
   bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=9000 --model_config_file=/models/models.config
   ```
 
-
-
-## saved model
-
-<https://github.com/tensorflow/tensorflow/tree/master/tensorflow/python/saved_model> 
-
-작성중

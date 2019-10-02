@@ -46,7 +46,8 @@ categories: Tensorflow Serving
 
 bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일할때 사용한다.
 
-설치방법은 <https://docs.bazel.build/versions/master/install-ubuntu.html>을 참고 
+> 설치방법은 <https://docs.bazel.build/versions/master/install-ubuntu.html>을 참고 
+>
 
 * 필요한 packages 설치
 
@@ -117,7 +118,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 * cntl + p+ q 로 호스트환경으로 돌아오기
 
-* Client 요청
+* Client 요청(mnist test이미지 1000장으로 inference한후에 성능측정하는 스크립트)
 
   ```
   python mnist_client.py --num_tests=1000 --server=<Docker IP>:9000
@@ -128,7 +129,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기 
 
-<https://docs.aws.amazon.com/ko_kr/dlami/latest/devguide/tutorial-tfserving.html#tutorial-tfserving-mnist> 참고
+> <https://docs.aws.amazon.com/ko_kr/dlami/latest/devguide/tutorial-tfserving.html#tutorial-tfserving-mnist> 
 
 * Inception모델, TEST이미지 다운로드
 

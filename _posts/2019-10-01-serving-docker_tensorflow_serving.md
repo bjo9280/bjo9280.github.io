@@ -4,17 +4,18 @@ date: 2019-10-01 00:00:00 +0900
 categories: Tensorflow Serving
 ---
 
-> docker에 tesnorflow serving을 bazel로 빌드하고 학습한 모델을 serving하는 방법 
->
-> <https://github.com/tensorflow/serving> 을 참고하여 작성
-
 ## Tensorflow Serving이란?
 
-* Tensorflow serving api or bazel로 빌드하는 방식이 있음
+* 머신러닝/딥러닝 모델을 실제 서비스를 위한 운영환경에 적용할때 사용되며 flexible, high-performance serving 시스템을 제공함
+* Tensorflow serving api or bazel로 빌드하는 방식이 있으며 python으로 api를 사용할때 퍼포먼스가 상대적으로 좋지않음
+
+![fig0](https://bjo9280.github.io/assets/images/2019-10-01/fig0.png)
 
 ## Serve a Tensorflow model in 60 seconds
 
 * tensorflow serving api를 이용하여 serving하는 방법
+
+  > <https://github.com/tensorflow/serving>
 
   ```
   # Download the TensorFlow Serving Docker image and repo
@@ -55,7 +56,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
   apt-get install pkg-config zip g++ zlib1g-dev unzip python3
   ```
 
-* <version>/bazel-<version> -installer-linux-x86_64.sh 형식으로 원하는 버전 다운로드
+* 버전/bazel-버전 -installer-linux-x86_64.sh 형식으로 원하는 버전 다운로드
 
   ```
   wget https://github.com/bazelbuild/bazel/releases/download/0.24.1/bazel-0.24.1-installer-linux-x86_64.sh

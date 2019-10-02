@@ -1,5 +1,5 @@
 ---
-title: "Windows에서 OpenVINO을 활용하여 Object Detection모델 최적화 및 Inference방법"
+title: "Windows에서 OpenVINO을 활용한 Object Detection모델 최적화 및 Inference방법"
 date: 2019-09-25 00:00:00 +0900
 categories: OpenVINO
 ---

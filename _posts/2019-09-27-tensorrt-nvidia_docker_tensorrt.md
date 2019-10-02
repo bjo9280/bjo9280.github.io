@@ -1,5 +1,5 @@
 ---
-title: "Docker을 활용한 TensorRT 컨테이너 생성 및 Sample 예제"
+title: "Docker환경에서 TensorRT를 활용한 Object Detection모델 최적화 및 Inference방법"
 date: 2019-09-26 00:00:00 +0900
 categories: TensorRT
 ---

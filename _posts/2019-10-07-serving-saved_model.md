@@ -4,11 +4,21 @@ date: 2019-10-04 00:00:00 +0900
 categories: TensorflowServing
 ---
 
-일반적인 tensorflow model은 checkpoint(.ckpt) protobuf(.pb)파일로 저장됨
+일반적인 tensorflow model은 checkpoint(.ckpt)또는 -->> protobuf(.pb)파일로 변환하여 저장됨
 
-serving에서는 예제에서 보았듯이 saved_model을 사용하며 직접학습시킨 모델을 serving이 가능한 형태로 변환해야됨
+serving에서는 예제에서 보았듯이 saved_model을 사용
+
+직접학습시킨 모델을 serving하려면 변환해야됨
 
 방법은 Frozen model을 불러와 입력과 출력에 serving이 가능한 형태의input과output을 연결하여 protobuf 파일 생성
+
+ckpt: weight 체크포인트파일
+
+pb: graph + weight
+
+pb(saved_model): input/output + pb
+
+<https://github.com/tensorflow/tensorflow/tree/master/tensorflow/python/saved_model> 
 
 <https://www.tensorflow.org/guide/saved_model> 
 

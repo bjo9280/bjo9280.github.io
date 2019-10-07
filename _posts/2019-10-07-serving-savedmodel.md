@@ -1,7 +1,7 @@
 ---
 title: "직접 학습시킨 모델로 Serving하기"
 date: 2019-10-07 00:00:00 +0900
-categories: Tensorflow Serving
+categories: TensorflowServing
 ---
 일반적인 tensorflow model은 checkpoint(.ckpt) protobuf(.pb)파일로 저장됨
 

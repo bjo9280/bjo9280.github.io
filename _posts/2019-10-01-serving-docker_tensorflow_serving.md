@@ -1,7 +1,7 @@
 ---
 title: "Docker환경에서 bazel로 Tensorflow Serving 빌드하고 학습모델 배포하기"
 date: 2019-10-01 00:00:00 +0900
-categories: Tensorflow Serving
+categories: TensorflowServing
 ---
 
 ## Tensorflow Serving이란?

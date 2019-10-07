@@ -8,6 +8,7 @@ categories: TensorflowServing
 
 * 머신러닝/딥러닝 모델을 실제 서비스를 위한 운영환경에 적용할때 사용되며 flexible, high-performance serving 시스템을 제공함
 * Tensorflow serving api or bazel로 빌드하는 방식이 있으며 python으로 api를 사용할때 퍼포먼스가 상대적으로 좋지않음
+* REST, gRPC의 형태의 API를 제공함
 
 ![fig0](https://bjo9280.github.io/assets/images/2019-10-01/fig0.png)
 

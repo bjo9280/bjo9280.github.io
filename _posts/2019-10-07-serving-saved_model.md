@@ -16,10 +16,38 @@ ckpt: weight 체크포인트파일
 
 pb: graph + weight
 
-pb(saved_model): input/output + pb
+pb(saved_model): input/output(signature_def) + pb
+
+Inference에서 사용되는 그래프에는 입력 및 출력이 있으며 signature라고 함
 
 <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/python/saved_model> 
 
 <https://www.tensorflow.org/guide/saved_model> 
+
+```python
+export_dir = ...
+...
+builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
+with tf.Session(graph=tf.Graph()) as sess:
+  ...
+  builder.add_meta_graph_and_variables(sess,
+                                       [tf.saved_model.tag_constants.TRAINING],
+                                       signature_def_map=foo_signatures,
+                                       assets_collection=foo_assets)
+...
+with tf.Session(graph=tf.Graph()) as sess:
+  ...
+  builder.add_meta_graph(["bar-tag", "baz-tag"])
+...
+builder.save()
+```
+
+```python
+export_dir = ...
+...
+with tf.Session(graph=tf.Graph()) as sess:
+  tf.saved_model.loader.load(sess, [tag_constants.TRAINING], export_dir)
+  ...
+```
 
 작성중

@@ -1,6 +1,6 @@
 ---
 title: "직접 학습시킨 모델로 Serving하기"
-date: 2019-10-04 00:00:00 +0900
+date: 2019-10-10 00:00:00 +0900
 categories: TensorflowServing
 ---
 
@@ -23,6 +23,8 @@ Inference에서 사용되는 그래프에는 입력 및 출력이 있으며 sign
 <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/python/saved_model> 
 
 <https://www.tensorflow.org/guide/saved_model> 
+
+
 
 ```python
 export_dir = ...
@@ -49,5 +51,15 @@ with tf.Session(graph=tf.Graph()) as sess:
   tf.saved_model.loader.load(sess, [tag_constants.TRAINING], export_dir)
   ...
 ```
+
+<https://www.tensorflow.org/tfx/serving/signature_defs> 
+
+```
+saved_model_cli show --dir /tmp/mnist_model/1 --all
+```
+
+
+
+![fig1](https://bjo9280.github.io/assets/images/2019-10-10/fig1.png)
 
 작성중

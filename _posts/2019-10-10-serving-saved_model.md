@@ -4,7 +4,9 @@ date: 2019-10-10 00:00:00 +0900
 categories: TensorflowServing
 ---
 
-> 이전 POST에서는 Saved_model포맷으로 되어 있는 학습파일을 다운받아서 serving해봤다면 이번에는 직접 학습시킨 모델로 Serving하는 과정을 작성
+> 이전 POST에서는 Saved_model포맷으로 되어 있는 학습파일을 다운받아서 serving해봤다면 
+>
+> 이번에는 직접 학습시킨 모델로 Serving하는 과정을 작성
 
 # 개요
 

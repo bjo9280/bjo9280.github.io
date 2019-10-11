@@ -19,13 +19,13 @@ categories: TensorRT
 
 * docker 이미지 받기
 
-  ```
+  ```bash
   docker pull nvcr.io/nvidia/tensorrt:19.09-py3
   ```
 
 * nvidia-docker로 이미지 컨테이너 생성
 
-  ```
+  ```bash
   nvidia-docker run -it --name tensorrt nvcr.io/nvidia/tensorrt:19.09-py3
   ```
 
@@ -35,14 +35,14 @@ categories: TensorRT
 
 * sample코드 make로 빌드
 
-  ```
+  ```bash
   cd /workspace/tensorrt/samples
   make -j4
   ```
 
 * 빌드가 완료되면 /workspace/tensorrt/bin에 실행파일이 생성됨
 
-  ```
+  ```bash
   ./sample_mnist
   ./sample_uff_mnist
   ./sample_onnx_mnist
@@ -54,13 +54,13 @@ categories: TensorRT
 
 * TensorRT컨테이너에 TensorFlow, Pytorch가 포함되있지 않기 때문에 python 패키지 및 convert-to-uff 변환 유틸리티 설치가 필요함
 
-  ```
+  ```bash
   /opt/tensorrt/python/python_setup.sh
   ```
 
 * python sample코드 실행
 
-  ```
+  ```bash
   python caffe_resnet50.py -d /workspace/tensorrt/python/data
   python uff_resnet50.py -d /workspace/tensorrt/python/data
   python onnx_resnet50.py -d /workspace/tensorrt/python/data
@@ -68,7 +68,7 @@ categories: TensorRT
 
 * /workspace/tensorrt/python/data 폴더에 있는 이미지중 랜덤하게 inference하여 결과를 보여줌
 
-  ```
+  ```bash
   Correctly recognized /workspace/tensorrt/python/data/resnet50/tabby_tiger_cat.jpg as tabby
   ```
 
@@ -76,13 +76,13 @@ categories: TensorRT
 
 * /workspace/tensorrt/samples/python/uff_ssd 경로에 requirements 패키지 설치
 
-  ```
+  ```bash
   pip install -r requirements.txt
   ```
 
 * FlattenConcat custom plugin layers 사용을 위한 빌드
 
-  ```
+  ```bash
   mkdir -p build
   cd build
   cmake ..
@@ -92,14 +92,14 @@ categories: TensorRT
 
 * uff 변환 및 inference
 
-  ```
+  ```bash
   python detect_objects.py <IMAGE_PATH>
   ```
 
   * 예제소스에서는 ssd_inception_v2_coco_2017_11_17 model을 다운로드하여 uff파일로 변환한 후에 inference함
   * 또는 convert-to-uff 명령어로 pb파일을 uff로 변환 가능함
 
-  ```
+  ```bash
   convert-to-uff --input-file frozen_inference_graph.pb -O NMS -p /workspace/tensorrt/samples/sampleUffSSD/config.py
   ```
 

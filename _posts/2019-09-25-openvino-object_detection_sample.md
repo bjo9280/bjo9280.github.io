@@ -25,13 +25,13 @@ categories: OpenVINO
 
 * C:\Program Files (x86)\IntelSWTools\openvino\deployment_tools\model_optimizer\requirements_tf.txt 패키지설치 
 
-  ```
+  ```bash
   pip install -r requirements_tf.txt
   ```
 
 * mo_tf.py를 사용하여 .bin, .xml파일로 변환(cmd 관리자 권한으로 실행)
 
-  ```
+  ```bash
   python mo_tf.py --input_model=tmp/ssd_inception_v2_coco_2018_01_28/frozen_inference_graph.pb \
   --tensorflow_use_custom_operations_config extensions/front/tf/ssd_v2_support.json \
   --tensorflow_object_detection_api_pipeline_config tmp/ssd_inception_v2_coco_2018_01_28/pipeline.config \
@@ -56,13 +56,13 @@ categories: OpenVINO
   > Microsoft Visual Studio* 2015, 2017, or 2019
   >
 
-  ```
+  ```bash
   build_samples_msvc.bat VS2015
   ```
 
 * setupvars실행(PYTHONPATH 설정)
 
-  ```
+  ```bash
   C:\Program Files (x86)\IntelSWTools\openvino\bin\setupvars.bat
   ```
 
@@ -78,7 +78,7 @@ categories: OpenVINO
 
 * C:\사용자계정\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release 경로에 빌드된 object_detection_sample_ssd.exe으로 inference (RFCN, SSD, Faster RCNNs지원)
 
-  ```
+  ```bash
   object_detection_sample_ssd -i image1.jpg -m frozen_inference_graph.xml -d MYRIAD
   ```
 

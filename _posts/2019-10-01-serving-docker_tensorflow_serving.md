@@ -18,7 +18,7 @@ Tensorflow serving api를 이용하여 serving하는 방법
 
 > <https://github.com/tensorflow/serving> 참고
 
-```
+```bash
 # Download the TensorFlow Serving Docker image and repo
 docker pull tensorflow/serving
 
@@ -52,26 +52,26 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 * 필요한 packages 설치
 
-  ```
+  ```bash
   apt-get install pkg-config zip g++ zlib1g-dev unzip python3
   ```
 
 * 버전/bazel-버전 -installer-linux-x86_64.sh 형식으로 원하는 버전 다운로드
 
-  ```
+  ```bash
   wget https://github.com/bazelbuild/bazel/releases/download/0.24.1/bazel-0.24.1-installer-linux-x86_64.sh
   ```
 
 * bazel 설치
 
-  ```
+  ```bash
   chmod +x bazel-0.24.1-installer-linux-x86_64.sh
   ./bazel-0.24.1-installer-linux-x86_64.sh
   ```
 
 * 환경변수 설정
 
-  ```
+  ```bash
   export PATH="$PATH:$HOME/bin"
   ```
 
@@ -81,7 +81,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 * gRPC설치
 
-  ```
+  ```bash
   pip install grpcio
   ```
 
@@ -89,20 +89,20 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 * tensorflow serving clone
 
-  ```
+  ```bash
   git clone https://github.com/tensorflow/serving
   ```
 
 * bazel build
 
-   ```
+   ```bash
      cd serving
      bazel build -c opt --local_resources 5000,1.0,1.0 tensorflow_serving/…
    ```
 
 * mnist 학습 파일 생성 (Docker환경에 tensorflow가 설치되어 있지 않으므로 설치하거나 or 호스트환경에서 학습 후 학습파일을 옮김)
 
-  ```
+  ```bash
   python tensorflow_serving/example/mnist_saved_model.py /tmp/mnist_model
   ```
 
@@ -110,7 +110,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 * tensorflow serving 서버실행
 
-  ```
+  ```bash
   bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server \
   --port=9000 \
   --model_name=mnist \ 
@@ -121,7 +121,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
 * Client 요청(mnist test이미지 1000장으로 inference한후에 성능측정하는 스크립트)
 
-  ```
+  ```bash
   python mnist_client.py --num_tests=1000 --server=<Docker IP>:9000
   ```
   ![fig1](https://bjo9280.github.io/assets/images/2019-10-01/fig1.png)
@@ -134,7 +134,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
 
 * Inception모델, TEST이미지 다운로드
 
-  ```
+  ```bash
   curl -O https://s3-us-west-2.amazonaws.com/aws-tf-serving-ei-example/inception.zip
   curl -O https://upload.wikimedia.org/wikipedia/commons/b/b5/Siberian_Husky_bi-eyed_Flickr.jpg
   ```
@@ -143,7 +143,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
 
 * Server 실행
 
-  ```
+  ```bash
   bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server \
   --port=9000 \
   --model_name=inception \
@@ -194,7 +194,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
 
 * client 요청으로 이미지 inference
 
-  ```
+  ```bash
   python inception_client.py --server=<Docker IP>:9000 --image Siberian_Husky_bi-eyed_Flickr.jpg
   ```
 
@@ -206,7 +206,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
 
 * config file을 생성하고 model_config_file 옵션으로 server실행
 
-  ```
+  ```xml
   # /models/models.config
   
   model_config_list: {
@@ -223,7 +223,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
   }
   ```
 
-  ```
+  ```bash
   bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server --port=9000 --model_config_file=/models/models.config
   ```
 

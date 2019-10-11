@@ -55,13 +55,13 @@ categories: TensorflowServing
 
 saved_model_cli 커맨드를 이용하여 SavedModel을 검사할 수 있으며 예제에서 사용된 mnist와 incetpin모델을 확인해보면 predict_image와 serving_default로 정의되어 있음
 
-```
+```bash
 saved_model_cli show --dir /tmp/mnist_model/1 --all
 ```
 
 ![fig0](https://bjo9280.github.io/assets/images/2019-10-10/fig0.png)
 
-```
+```bash
 saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 ```
 
@@ -115,7 +115,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 * saved_model_cli로 확인해보면 signature_def 이름은 serving_default, input은 (-1, -1, 3), output은 (1, 2)로 생성되었음.
 
-  ```
+  ```bash
   saved_model_cli show --dir ./saved/1 --all
   ```
 
@@ -129,7 +129,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 * 위에서 생성한 saved_model를 tensorflow serving을 이용하여 server실행
 
-  ```
+  ```bash
   bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server \
   --port=9000 \
   --model_name=my_model \ 

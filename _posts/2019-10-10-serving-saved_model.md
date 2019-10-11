@@ -60,7 +60,11 @@ SignatureDefs는 용도에 따라서 Classification SignatureDef와 Predict Sign
 saved_model_cli show --dir /tmp/mnist_model/1 --all
 ```
 
+![fig0](https://bjo9280.github.io/assets/images/2019-10-10/fig0.png)
 
+```
+saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
+```
 
 ![fig1](https://bjo9280.github.io/assets/images/2019-10-10/fig1.png)
 
@@ -71,6 +75,8 @@ saved_model_cli show --dir /tmp/mnist_model/1 --all
 * tf.saved_model.utils.build_tensor_info()를 이용하여 확인하면 input_shape=(-1, -1, 3), output_shape=(1, 2)
 
   ![fig2](https://bjo9280.github.io/assets/images/2019-10-10/fig2.png)
+
+* 이전 포스트에서 inception예제는 input_shape=(-1), output_shape=(-1, 5)로 정의되어 잇는데    
 
 * tf.saved_model.builder.SavedModelBuilder로 serving를 위한 saved_model을 생성
 

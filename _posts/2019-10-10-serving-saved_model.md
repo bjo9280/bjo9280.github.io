@@ -77,6 +77,8 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 * tf.saved_model.builder.SavedModelBuilder로 serving를 위한 saved_model을 생성
 
+  >  <https://github.com/bjo9280/classification-inference/blob/master/cls_ckpt_to_saved_model.ipynb> 
+
   ```python
   from tensorflow.python.saved_model import signature_constants
   from tensorflow.python.saved_model import tag_constants

@@ -12,7 +12,7 @@ categories: TensorflowServing
 
 * Tensorflow Serving은 예제에서 보았듯이 saved_model을 사용
 
-* 즉, 직접학습시킨 모델을 serving하려면 변환해야됨
+* 즉, 직접 학습시킨 모델을 serving하려면 변환해야됨
 
 * 방법은 checkpoint(.ckpt)또는 protobuf(.pb)을 불러와 입력과 출력에 serving이 가능한 형태의input과output을 연결하여 protobuf 파일 생성할 것임
 
@@ -22,7 +22,7 @@ categories: TensorflowServing
   >
   > saved_model: input/output(signature_def) + pb
 
-* Inference에서 사용되는 그래프에는 입력 및 출력이 있으며 signature라고 함
+* Serving에서 사용되는 그래프에는 입력 및 출력이 있으며 signature라고 함
 
 * SignatureDefs는 용도에 따라서 Classification SignatureDef와 Predict SignatureDef 두가지로 나뉨
 
@@ -31,7 +31,7 @@ categories: TensorflowServing
 
 * <https://github.com/tensorflow/tensorflow/tree/master/tensorflow/python/saved_model> 를 보면 SavedModel을 생성하는 방법에 대해 나와있음
 
-  ```
+  ```python
   export_dir = ...
   ...
   builder = tf.saved_model.builder.SavedModelBuilder(export_dir)
@@ -51,7 +51,7 @@ categories: TensorflowServing
 
 # Signature_defs
 
-SavedModel 커맨드를 이용하여 SavedModel을 검사할 수 있으며 예제에서 사용된 mnist와 incetpin모델을 확인
+saved_model_cli 커맨드를 이용하여 SavedModel을 검사할 수 있으며 예제에서 사용된 mnist와 incetpin모델을 확인해보면 predict_image와 serving_default로 정의되어 있음
 
 ```
 saved_model_cli show --dir /tmp/mnist_model/1 --all
@@ -67,13 +67,13 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 # My saved_model생성
 
-직접 학습한 ckpt로 저장되있는 모델을 불러와 SignatureDef(input, scores)를 정의하여 inference를 위한 saved_model을 생성할 것임
+직접 학습한 ckpt로 저장되있는 모델을 불러와 SignatureDef(input, scores)를 정의하여 Serving를 위한 saved_model을 생성할 것임
 
 * 직접 학습한 모델은 input_shape=(-1, -1, 3) output_shape=(1, 2) 이며 signatureDef로 정의해 줄 것임
 
   ![fig2](https://bjo9280.github.io/assets/images/2019-10-10/fig2.png)
 
-* 이전 포스트에서 inception예제는 위에 saved_model_cli로 봤듯이 input_shape=(-1), output_shape=(-1, 5)로 정의되어 잇는데  이미지의 path로만 inference하는듯??(Signature_defs정의 방법을 좀더 공부해야봐겟음..)
+* 이전 포스트에서 inception예제는 위에 saved_model_cli로 봤듯이 input_shape=(-1), output_shape=(-1, 5)로 정의되어 잇는데  이미지의 path로만 inference하는듯??이 부분에서 혼란 (Signature_defs build방법을 좀더 공부해야봐겟음..)
 
 * tf.saved_model.builder.SavedModelBuilder로 serving를 위한 saved_model을 생성
 
@@ -134,7 +134,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
   ![fig3](https://bjo9280.github.io/assets/images/2019-10-10/fig3.png)
 
-* client코드작성할때 Server실행할때 model_name과 saved_model의 sig_name, input명을 확인
+* client python코드작성할때 Server model_name과 saved_model의 sig_name, input명을 확인
 
   ```python
   from __future__ import print_function

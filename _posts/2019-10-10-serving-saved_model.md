@@ -67,9 +67,9 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 ## My saved_model생성
 
-학습했던 ckpt로 저장되있는 모델을 불러와 SignatureDef(input, scores)를 정의하여 inference를 위한 saved_model을 생성
+직접 학습한 ckpt로 저장되있는 모델을 불러와 SignatureDef(input, scores)를 정의하여 inference를 위한 saved_model을 생성할 것임
 
-* tf.saved_model.utils.build_tensor_info()를 이용하여 확인하면 input_shape=(-1, -1, 3), output_shape=(1, 2)
+* 직접 학습한 모델은 input_shape=(-1, -1, 3) output_shape=(1, 2) 이며 signatureDef로 정의해 줄 것임
 
   ![fig2](https://bjo9280.github.io/assets/images/2019-10-10/fig2.png)
 

@@ -1,5 +1,5 @@
 ---
-title: "직접 학습시킨 모델로 Serving하기"
+title: "직접 학습시킨 모델(ckpt)로 Serving하기"
 date: 2019-10-10 00:00:00 +0900
 categories: TensorflowServing
 ---

@@ -191,7 +191,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 * client요청
 
-  ```
+  ```shell
   python my_client.py --server=<docker ip>:9000 --image test.jpg
   ```
 

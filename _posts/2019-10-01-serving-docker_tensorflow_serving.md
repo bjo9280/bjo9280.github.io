@@ -206,7 +206,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
 
 * config file을 생성하고 model_config_file 옵션으로 server실행
 
-  ```xml
+  ```shell
   # /models/models.config
   
   model_config_list: {

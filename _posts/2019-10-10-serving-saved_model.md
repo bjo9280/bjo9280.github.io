@@ -185,7 +185,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
     tf.app.run()
   ```
 
-* client실행
+* client요청
 
   ```
   python my_client.py --server=<docker ip>:9000 --image test.jpg

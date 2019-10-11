@@ -8,7 +8,7 @@ categories: OpenVINO
 >
 > 공식 가이드 문서 [https://docs.openvinotoolkit.org](https://docs.openvinotoolkit.org/) 을 참고하여 작성
 
-## Model Optimizer Developer이란?
+# Model Optimizer Developer이란?
 
 학습한 모델을 배포하기위해 변환
 
@@ -17,7 +17,7 @@ categories: OpenVINO
 
 ![fig1](https://bjo9280.github.io/assets/images/2019-09-25/fig1.png)
 
-## Converting a Tensorflow model
+# Converting a Tensorflow model
 
 * openVINO 설치  <https://software.intel.com/en-us/articles/get-started-with-neural-compute-stick> 
 
@@ -47,7 +47,7 @@ categories: OpenVINO
 
   
 
-## Inference Sample 빌드
+# Inference Sample 빌드
 
 * C:\Program Files (x86)\IntelSWTools\openvino\inference_engine\samples에서 빌드
 
@@ -74,7 +74,7 @@ categories: OpenVINO
 
   ![fig3](https://bjo9280.github.io/assets/images/2019-09-25/fig3.png)
 
-## Inference방법 
+# Inference방법 
 
 * C:\사용자계정\Documents\Intel\OpenVINO\inference_engine_samples_build\intel64\Release 경로에 빌드된 object_detection_sample_ssd.exe으로 inference (RFCN, SSD, Faster RCNNs지원)
 

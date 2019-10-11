@@ -6,7 +6,7 @@ categories: TensorflowServing
 
 > 이전 POST에서는 Saved_model포맷으로 되어 있는 학습파일을 다운받아서 serving해봤다면 이번에는 직접 학습시킨 모델로 Serving하는 과정을 작성
 
-## 개요
+# 개요
 
 * 일반적인 tensorflow model은 checkpoint(.ckpt)또는 protobuf(.pb)파일로 변환하여 저장됨
 
@@ -49,7 +49,7 @@ categories: TensorflowServing
   builder.save()
   ```
 
-## Signature_defs
+# Signature_defs
 
 SavedModel 커맨드를 이용하여 SavedModel을 검사할 수 있으며 예제에서 사용된 mnist와 incetpin모델을 확인
 
@@ -65,7 +65,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
 ![fig1](https://bjo9280.github.io/assets/images/2019-10-10/fig1.png)
 
-## My saved_model생성
+# My saved_model생성
 
 직접 학습한 ckpt로 저장되있는 모델을 불러와 SignatureDef(input, scores)를 정의하여 inference를 위한 saved_model을 생성할 것임
 
@@ -121,7 +121,7 @@ saved_model_cli show --dir ~/SERVING_INCEPTION/SERVING_INCEPTION/1 --all
 
   
 
-## Server/Client 실행
+# Server/Client 실행
 
 * 위에서 생성한 saved_model를 tensorflow serving을 이용하여 server실행
 

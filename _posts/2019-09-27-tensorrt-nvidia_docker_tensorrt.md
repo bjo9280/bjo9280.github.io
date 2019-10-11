@@ -8,14 +8,14 @@ categories: TensorRT
 >
 > 공식 가이드 문서 <https://docs.nvidia.com/deeplearning/sdk/tensorrt-developer-guide/index.html>  을 참고하여 작성
 
-## TensorRT의 최적화 방법
+# TensorRT의 최적화 방법
 
 * Convolution + Bias + Activation 연산을 한번에 처리하도록 최적화
 * Tensorflow Graph > UFF > TensorRT Engine > Inference
 
 ![fig4](https://bjo9280.github.io/assets/images/2019-09-27/fig4.png)
 
-## TensorRT 컨테이너 생성
+# TensorRT 컨테이너 생성
 
 * docker 이미지 받기
 
@@ -29,9 +29,9 @@ categories: TensorRT
   nvidia-docker run -it --name tensorrt nvcr.io/nvidia/tensorrt:19.09-py3
   ```
 
-## Sample 예제
+# Sample 예제
 
-### C++ mnist 예제
+## C++ mnist 예제
 
 * sample코드 make로 빌드
 
@@ -50,7 +50,7 @@ categories: TensorRT
 
   ![fig1](https://bjo9280.github.io/assets/images/2019-09-27/fig1.png)
 
-### python classification 예제
+## python classification 예제
 
 * TensorRT컨테이너에 TensorFlow, Pytorch가 포함되있지 않기 때문에 python 패키지 및 convert-to-uff 변환 유틸리티 설치가 필요함
 
@@ -72,7 +72,7 @@ categories: TensorRT
   Correctly recognized /workspace/tensorrt/python/data/resnet50/tabby_tiger_cat.jpg as tabby
   ```
 
-### Object detecion(SSD)모델 예제
+## Object detecion(SSD)모델 예제
 
 * /workspace/tensorrt/samples/python/uff_ssd 경로에 requirements 패키지 설치
 

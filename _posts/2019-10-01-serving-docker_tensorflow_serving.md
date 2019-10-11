@@ -4,7 +4,7 @@ date: 2019-10-01 00:00:00 +0900
 categories: TensorflowServing
 ---
 
-## Tensorflow Serving이란?
+# Tensorflow Serving이란?
 
 * 머신러닝/딥러닝 모델을 실제 서비스를 위한 운영환경에 적용할때 사용되며 flexible, high-performance serving 시스템을 제공함
 * Tensorflow serving api or bazel로 빌드하는 방식이 있으며 python으로 api를 사용할때 퍼포먼스가 상대적으로 좋지않음
@@ -12,7 +12,7 @@ categories: TensorflowServing
 
 ![fig0](https://bjo9280.github.io/assets/images/2019-10-01/fig0.png)
 
-## Serve a Tensorflow model in 60 seconds
+# Serve a Tensorflow model in 60 seconds
 
 Tensorflow serving api를 이용하여 serving하는 방법
 
@@ -38,12 +38,12 @@ curl -d '{"instances": [1.0, 2.0, 5.0]}' \
 
 # Returns => { "predictions": [2.5, 3.0, 4.5] }
 ```
-## Docker 설치
+# Docker 설치
 
 * 공식 Gitbub에서 Tensorflow serving을 Docker에 설치하는 걸 권장
 * ubuntu16.04 + python3 설치
 
-## Bazel 설치
+# Bazel 설치
 
 bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일할때 사용한다.
 
@@ -77,7 +77,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
 
   
 
-## gRPC 설치
+# gRPC 설치
 
 * gRPC설치
 
@@ -85,7 +85,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
   pip install grpcio
   ```
 
-## Server / Client 실행
+# Server / Client 실행
 
 * tensorflow serving clone
 
@@ -126,7 +126,7 @@ bazel은 다양한 플랫폼에 설치할때나 여러가지 언어를 컴파일
   ```
   ![fig1](https://bjo9280.github.io/assets/images/2019-10-01/fig1.png)
 
-## Inception model 테스트
+# Inception model 테스트
 
 AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기 
 
@@ -202,7 +202,7 @@ AWS에서 제공하는 Tensorflow serving 예제로 테스트 해보기
 
   
 
-## 여러 모델을 동시에 serving
+# 여러 모델을 동시에 serving
 
 * config file을 생성하고 model_config_file 옵션으로 server실행
 

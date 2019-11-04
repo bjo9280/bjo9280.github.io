@@ -12,32 +12,24 @@ categories: Reinforcement
 
 OpenAI gym을 사용하여 구축 
 
-<https://gym.openai.com/> 예제들
+<https://www.slideshare.net/ssuser163469/ss-78685946> 슬라이드에 tictactoe예제를 살펴봄
+
+적절한 상태와 보상의 설계가 강화학습 환경 제작의 핵심
+
+O 승리의 보상 +1, X의 승리 보상 -1, 게임 진행 및 무승부 0으로 O는 보상을 최대화하려고 하며 X는 보상을 최소화 하려한다.
+
+
 
 ## Installation
 
 ```bash
-pip install gtm
-```
-
-## Building from Source
-
-```bash
-git clone https://github.com/openai/gym
-cd gym
-pip install -e .
+pip install gym
 ```
 
 ## Environment
 
 ```python
-import gym
-env = gym.make('CartPole-v0')
-env.reset()
-for _ in range(1000):
-    env.render()
-    env.step(env.action_space.sample()) # take a random action
-env.close()
+
 ```
 
 

@@ -12,6 +12,8 @@ categories: Reinforcement
 
 <https://www.slideshare.net/ssuser163469/ss-78685946> 슬라이드에 tictactoe예제를 살펴봄
 
+![fig1](https://github.com/bjo9280/bjo9280.github.io/tree/master/assets/images/2019-11-01/fig1.png)
+
 소스는 <https://github.com/haje01/gym-tictactoe.git>
 
 적절한 상태와 보상의 설계가 강화학습 환경 제작의 핵심

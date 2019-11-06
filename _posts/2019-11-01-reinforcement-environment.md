@@ -7,14 +7,18 @@ categories: Reinforcement
 > 강화학습을 하려면 문제풀이기반의 환경을 구축해야됨
 >
 > OpenAI gym을 사용하여 구축된 tictactoe예제를 살펴봄
+>
+> <https://www.slideshare.net/ssuser163469/ss-78685946> 슬라이드 참고하여 작성
+
+# **틱택토**(tic-tac-toe)
+
+두 명이 번갈아가며 **O**와 **X**를 3×3 판에 써서 같은 글자를 가로, 세로, 혹은 대각선 상에 놓이도록 하는 놀이이다. [m,n,k-게임](https://ko.wikipedia.org/wiki/M,n,k-%EA%B2%8C%EC%9E%84)으로, (3,3,3)-게임이다. 
+
+![fig1](https://bjo9280.github.io/assets/images/2019-11-01/fig1.png)
 
 # 개요
 
-<https://www.slideshare.net/ssuser163469/ss-78685946> 슬라이드에 tictactoe예제를 살펴봄
-
-![fig1](https://github.com/bjo9280/bjo9280.github.io/tree/master/assets/images/2019-11-01/fig1.png)
-
-소스는 <https://github.com/haje01/gym-tictactoe.git>
+소스는 <https://github.com/haje01/gym-tictactoe.git> 
 
 적절한 상태와 보상의 설계가 강화학습 환경 제작의 핵심
 

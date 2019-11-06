@@ -29,8 +29,8 @@ pip install gym
 ## Environment
 
 ```python
-class TicTacToeEnv(gym.Env):
-    metadata = {'render.modes': ['human']}
+class TicTacToeEnv(gym.Env): # gym.Env를 상속
+    metadata = {'render.modes': ['human']} # 렌더링 모드
 
     def step(self, action):
         ...
@@ -44,12 +44,15 @@ class TicTacToeEnv(gym.Env):
 
 ```python
 def reset(self):
-    self.board = [0] * NUM_LOC
-    self.mark = self.start_mark
+    # 환경 초기화
+    
+    self.board = [0] * 9
+    self.mark = 'O'
     self.done = False
     return self._get_obs()
 
 def _get_obs(self):
+    # 관측한 상태 (보드의 상태 + 다음 차례 마크) 반환
     return tuple(self.board), self.mark
 ```
 
@@ -57,24 +60,21 @@ def _get_obs(self):
 
 ```python
 def step(self, action):
+    # 주어진 동작을 위치로 마크를 배치
     loc = action
-    if self.done:
-        return self._get_obs(), 0, True, None
-
     reward = NO_REWARD
-    # place
     self.board[loc] = tocode(self.mark)
+    
+    # 승/패가 결정되면 마크에 맞는 리워드를 반환
     status = check_game_status(self.board)
-    logging.debug("check_game_status board {} mark '{}'"
-                  " status {}".format(self.board, self.mark, status))
     if status >= 0:
         self.done = True
         if status in [1, 2]:
-            # always called by self
             reward = O_REWARD if self.mark == 'O' else X_REWARD
 
-    # switch turn
+    # 다음 플레이어로 교체
     self.mark = next_mark(self.mark)
+    # 새 상태, 리워드, 에피소드 종료 여부 반환
     return self._get_obs(), reward, self.done, None
 ```
 
@@ -82,24 +82,18 @@ def step(self, action):
 
 ```python
 def render(self, mode='human', close=False):
-    if close:
-        return
+    # human 모드에서만 보드를 표시
     if mode == 'human':
-        self._show_board(print)  # NOQA
-        print('')
-    else:
-        self._show_board(logging.info)
-        logging.info('')
+        self._show_board(print)  
         
 def _show_board(self, showfn):
-    """Draw tictactoe board."""
+    # 보드 그리기
     for j in range(0, 9, 3):
-        def mark(i):
-            return tomark(self.board[i]) if not self.show_number or\
-                self.board[i] != 0 else str(i+1)
-        showfn(LEFT_PAD + '|'.join([mark(i) for i in range(j, j+3)]))
+        # 마크 코드를 문자로 0 -> ' ', 1 -> 'O' 2 -> 'X'
+        print('|'.join([tomark(self.board[i])
+        for i in range(j, j+3)]))
         if j < 6:
-            showfn(LEFT_PAD + '-----')
+            print('--------')
 ```
 
 

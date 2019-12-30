@@ -3,9 +3,6 @@ title: "EfficientDet : Scalable and Efficient Object Detection Review"
 date: 2019-12-30 00:00:00 +0900
 categories: Object Detection
 ---
-
-# 개요
-
 * EfficientNet을 사용하여 기존 모델들의 성능 보다 높으며, 특히 연산량, 연산 속도 관점에서는 굉장히 효율적인 모델
 
 ![실험결과](https://bjo9280.github.io/assets/images/2019-12-30/실험결과.png)

@@ -3,8 +3,6 @@ title: "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks
 date: 2019-12-27 00:00:00 +0900
 categories: CNN
 ---
-## 개요
-
 * 구글발표 2019.5 / Rethinking Model Scaling / MnasNet저자
 * 현재 CNN은 두가지 방향으로 발전되고 있음
   1. 더 높은 성능을 내도록 연구 

@@ -8,7 +8,7 @@ categories: Object Detection
 
 * EfficientNet을 사용하여 기존 모델들의 성능 보다 높으며, 특히 연산량, 연산 속도 관점에서는 굉장히 효율적인 모델
 
-![실험결과](D:\문서\EfficientDet\img\실험결과.png)
+![실험결과](https://bjo9280.github.io/assets/images/2019-12-30/실험결과.png)
 
 # Main Contribution
 
@@ -21,7 +21,7 @@ categories: Object Detection
 * Top-down 방식으로 추출된 결과들인 low-resolution 및 high-resolution 들을 묶는 방식
 * 상위 레벨의 이미 계산 된 특징을 재사용 하므로 멀티 스케일 특징들을 효율적으로 사용할 수 있음
 
-![fpns](D:\문서\EfficientDet\img\fpn.png)
+![fpns](https://bjo9280.github.io/assets/images/2019-12-30/fpn.png)
 
 ## BiFPN
 
@@ -29,7 +29,7 @@ categories: Object Detection
 
 - One-Stage Detector의 대표격인 모델인 RetinaNet, M2Det, AutoML의 Neural Architecture Search를 FPN 구조에 적용한 NAS-FPN 등 FPN을 적용하고, 성능을 개선하고자 하는 연구들이 많이 진행됨
 
-  ![ob_list](D:\문서\EfficientDet\img\ob_list.jpg)
+  ![ob_list](https://bjo9280.github.io/assets/images/2019-12-30/ob_list.jpg)
 
 - 선행 연구들은 모두 서로 다른 input feature들을 합칠 때 구분없이 단순히 더하는 방식을 사용하고 있음
 
@@ -45,11 +45,11 @@ categories: Object Detection
 
 * 이를 통해 더 high-level한 feature fusion을 할 수 있음 
 
-![bifpn](D:\문서\EfficientDet\img\bifpn.png)
+![bifpn](https://bjo9280.github.io/assets/images/2019-12-30/bifpn.png)
 
 ### 실험
 
-![bifpn성능](D:\문서\EfficientDet\img\bifpn성능.png)
+![bifpn성능](https://bjo9280.github.io/assets/images/2019-12-30/bifpn성능.png)
 
 ### Weighted Feature Fusion
 
@@ -58,7 +58,7 @@ categories: Object Detection
 
 ### 실험
 
-![featurefusion](D:\문서\EfficientDet\img\featurefusion.png)
+![featurefusion](https://bjo9280.github.io/assets/images/2019-12-30/featurefusion.png)
 
 - Unbounded fusion  : unbounded 되어있기 때문에 학습에 불안정성을 유발
 - SoftMax-based fusion : GPU하드웨어에서 slowdown을 유발
@@ -66,11 +66,11 @@ categories: Object Detection
   - weight들은 ReLU를 거치기 때문에 non-zero임이 보장이 되고 분모가 0이 되는 것을 막기 위해 0.0001 크기의 입실론을 넣어줌 
   - Weight 값이 0~1사이로 normalize가 되는 것은 SoftMax와 유사하며 ablation study를 통해 SoftMax-based fusion 방식보다 좋은 성능을 보임 
 
-![featurefusion결과](D:\문서\EfficientDet\img\featurefusion결과.png)
+![featurefusion결과](https://bjo9280.github.io/assets/images/2019-12-30/featurefusion결과.png)
 
 학습을 거치면서 weight가 빠르게 변하는 것을 보여주고 있고, 이는 각 feature들이 동등하지 않게 output feature에 기여를 하고 있음을 보여주고 있으며, Fast fusion을 사용하여도 SoftMax fusion과 양상이 비슷함을 보여주고 있음
 
-![featurefusion결과](D:\문서\EfficientDet\img\featurefusion결과2.png)
+![featurefusion결과](https://bjo9280.github.io/assets/images/2019-12-30/featurefusion결과2.png)
 
 SoftMax fusion과 Fast Fusion을 비교한 결과이며, Fast Fusion을 사용하면 약간의 mAP 하락은 있지만 약 30%의 속도 향상 
 
@@ -84,7 +84,7 @@ SoftMax fusion과 Fast Fusion을 비교한 결과이며, Fast Fusion을 사용�
 * BiFPN을 Feature Network로 사용하였고, level 3-7 feature에 적용
 * top-down, bottom-up bidirectional feature fusion을 반복적으로 사용
 
-![effcientdet](D:\문서\EfficientDet\img\effcientdet.png)
+![effcientdet](https://bjo9280.github.io/assets/images/2019-12-30/effcientdet.png)
 
 ### Compound Scaling
 
@@ -92,15 +92,15 @@ SoftMax fusion과 Fast Fusion을 비교한 결과이며, Fast Fusion을 사용�
 * ImageNet-pretrained network를 사용
 * input의 resolution과 backbone network의 크기를 늘려주었고, BiFPN과 Box/class network 도 동시에 키워줌
 
-![compound](D:\문서\EfficientDet\img\compound.png)
+![compound](https://bjo9280.github.io/assets/images/2019-12-30/compound.png)
 
 ## 결과
 
 * COCO 데이터셋에서 가장 높은 mAP를 달성하여, 2019년 11월 기준 State-of-the-art(SOTA) 성능을 보임
 * 기존 방식들 대비 연산 효율이 압도적으로 좋음 
 
-![effcientdet결과](D:\문서\EfficientDet\img\effcientdet결과.png)
+![effcientdet결과](https://bjo9280.github.io/assets/images/2019-12-30/effcientdet결과.png)
 
-![featurefusion결과2](D:\문서\EfficientDet\img\effcientdet결과2.png)
+![featurefusion결과2](https://bjo9280.github.io/assets/images/2019-12-30/effcientdet결과2.png)
 
  

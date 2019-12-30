@@ -1,5 +1,8 @@
-#  EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks
-
+---
+title: "EfficientNet: Rethinking Model Scaling for Convolutional Neural Networks"
+date: 2019-12-27 00:00:00 +0900
+categories: CNN
+---
 ## 개요
 
 * 구글발표 2019.5 / Rethinking Model Scaling / MnasNet저자

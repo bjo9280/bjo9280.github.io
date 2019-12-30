@@ -1,4 +1,8 @@
-# EfficientDet : Scalable and Efficient Object Detection Review
+---
+title: "EfficientDet : Scalable and Efficient Object Detection Review"
+date: 2019-12-30 00:00:00 +0900
+categories: Object Detection
+---
 
 # 개요
 

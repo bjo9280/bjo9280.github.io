@@ -102,7 +102,9 @@ def _show_board(self, showfn):
             print('--------')
 ```
 
-## main
+
+
+## play
 
 ```python
 def play(show_number):

@@ -12,36 +12,38 @@ categories: Node.js
 
 * 동기식 처리 모델(Synchronous processing model)은 직렬적으로 태스크(task)를 수행
 
-```javascript
-var fs = require('fs');
+  ```javascript
+  var fs = require('fs');
 
-console.log('A');
-var result = fs.readFileSync('syntax/sample.txt', 'utf8');
-console.log(result);
-console.log('C');
-```
+  console.log('A');
+  var result = fs.readFileSync('syntax/sample.txt', 'utf8');
+  console.log(result);
+  console.log('C');
+  ```
 
-```
-A
-B
-C
-```
+  ```
+  A
+  B
+  C
+  ```
 
 * 비동기식 처리 모델(Asynchronous processing model 또는 Non-Blocking processing model)은 병렬적으로 태스크를 수행
 
-```javascript
-var fs = require('fs');
+  ```javascript
+  var fs = require('fs');
+  
+  console.log('A');
+  fs.readFile('syntax/sample.txt', 'utf8', function(err, result){
+      console.log(result);
+  });
+  console.log('C');
+  ```
 
-console.log('A');
-fs.readFile('syntax/sample.txt', 'utf8', function(err, result){
-    console.log(result);
-});
-console.log('C');
-```
+  ```
+  A 
+  C 
+  B
+  ```
 
-```
-A 
-C 
-B
-```
+### Collback
 

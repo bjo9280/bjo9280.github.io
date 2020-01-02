@@ -1,18 +1,13 @@
-language: go
-go:
-   - master
-install:
-   - go get github.com/spf13/hugo
+language: ruby
+cache: bundler
+gemfile: Gemfile
+before_install:
+  - gem install bundler
 script:
-   - hugo
-deploy:
-   local_dir: public    # hugo build output path
-   repo: [name].github.io  # target repo
-   target_branch: master
-   provider: pages
-   skip_cleanup: true
-   github_token: $GITHUB_TOKEN
-   email: [email]
-   name: [name]
-   on:
-      branch: master
+  - bundle exec jekyll algolia --config _config.yml
+branches:
+  only:
+    # Change this to gh-pages if you're deploying using the gh-pages branch
+    - master
+rvm:
+ - 2.4

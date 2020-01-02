@@ -4,7 +4,7 @@ date: 2020-01-02 00:00:00 +0900
 categories: Node.js
 ---
 
-> tensorflow.js 공부하기전에 Node.js 스터디
+> tensorflow.js 공부하기 전 Node.js 스터디
 >
 > <https://opentutorials.org/course/3332> 에서 강의 내용을 참고하여 작성
 >
@@ -86,17 +86,19 @@ pm2 log
 
 * 웹을 통해서 컨텐츠를 생성/삭제할때 html form 생성 방법
 
-```javascript
-<form action="http://localhost:3000/process_create" method="post">
-  <p><input type="text" name="title"></p>
-  <p>
-    <textarea name="description"></textarea>
-  </p>
-  <p>
-    <input type="submit">
-  </p>
-</form>
-```
+  ```javascript
+  <form action="http://localhost:3000/process_create" method="post">
+    <p><input type="text" name="title"></p>
+    <p>
+      <textarea name="description"></textarea>
+    </p>
+    <p>
+      <input type="submit">
+    </p>
+  </form>
+  ```
+
+  
 
 ## 글쓰기 UI 만들기
 

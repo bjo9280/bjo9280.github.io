@@ -176,3 +176,177 @@ pm2 log
             var description = post.description
         });
   ```
+
+## 파일생성과 리다이렉션
+
+* 사용자가 입력한 정보를 받아 데이터 디렉토리에 파일을 생성
+
+* 작업을 완료 후에 특정 페이지로 보내고자 할 때 리다이렉션을 사용
+
+  ```javascript
+  else if(pathname === '/create_process'){
+        var body = '';
+        request.on('data', function(data){
+            body = body + data;
+        });
+        request.on('end', function(){
+            var post = qs.parse(body);
+            var title = post.title;
+            var description = post.description;
+            //file, data, callback
+            fs.writeFile(`data/${title}`, description, 'utf8',                   function(err){
+              //302 리다이렉션, location 페이지위치
+              response.writeHead(302, {Location: `/?id=${title}`});
+              response.end();
+            })
+        });
+      }
+  ```
+
+## 글수정-수정 링크 생성
+
+* templateHTML에 control변수를 주고 template에 update 링크를 생성
+
+  ```javascript
+  else {
+          fs.readdir('./data', function(error, filelist){
+            fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+              var title = queryData.id;
+              var list = templateList(filelist);
+              var template = templateHTML(title, list,
+                `<h2>${title}</h2>${description}`,
+                //title id를 가지는 update링크를 생성
+                `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`
+              );
+              response.writeHead(200);
+              response.end(template);
+            });
+          });
+        }
+  ```
+
+
+
+## 글수정-수정할 정보 전송
+
+* 기존정보를 가져와서 보여줌
+
+* submit 버튼을 눌르고 update_process로 갈때 기존 title 정보가 필요하며 hidden으로 보여지지 않도록함
+
+  ```javascript
+  else if(pathname === '/update'){
+        fs.readdir('./data', function(error, filelist){
+          fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+            var title = queryData.id;
+            var list = templateList(filelist);
+            var template = templateHTML(title, list,
+              `
+              <form action="/update_process" method="post">
+                <input type="hidden" name="id" value="${title}">
+                <p><input type="text" name="title" placeholder="title" value="${title}"></p>
+                <p>
+                  <textarea name="description" placeholder="description">${description}                       </textarea>
+                </p>
+                <p>
+                  <input type="submit">
+                </p>
+              </form>
+              `,
+                                       
+              `<a href="/create">create</a> <a href="/update?id=${title}">update</a>`
+            );
+            response.writeHead(200);
+            response.end(template);
+          });
+        });
+  ```
+
+  
+
+## 글수정 - 수정된 내용 저장
+
+* update_process에서 fs.rename(oldPath, newPath, callback)을 사용하여 기존 타이틀 이름을 변경
+
+* fs.writeFile으로 newPath의 정보를 변경
+
+  ```javascript
+  else if(pathname === '/update_process'){
+        var body = '';
+        request.on('data', function(data){
+            body = body + data;
+        });
+        request.on('end', function(){
+            var post = qs.parse(body);
+            var id = post.id;
+            var title = post.title;
+            var description = post.description;
+            fs.rename(`data/${id}`, `data/${title}`, function(error){
+              fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+                response.writeHead(302, {Location: `/?id=${title}`});
+                response.end();
+              })
+            });
+        });
+      }
+  ```
+
+
+
+## 글삭제 - 삭제버튼 구현
+
+* 삭제할때 링크로 구현하면 안되며 form으로 hidden속성을 갖도록함
+
+*  delete_process로 post방식으로 보냄
+
+* onsubmit 옵션으로 삭제확인버튼 구현가능
+
+  ```javascript
+  else {
+          fs.readdir('./data', function(error, filelist){
+            fs.readFile(`data/${queryData.id}`, 'utf8', function(err, description){
+              var title = queryData.id;
+              var list = templateList(filelist);
+              var template = templateHTML(title, list,
+                `<h2>${title}</h2>${description}`,
+                ` <a href="/create">create</a>
+                  <a href="/update?id=${title}">update</a>
+                  <form action="delete_process" method="post">
+                    <input type="hidden" name="id" value="${title}">
+                    <input type="submit" value="delete">
+                  </form>`
+              );
+              response.writeHead(200);
+              response.end(template);
+            });
+          });
+        }
+      }
+  ```
+
+
+
+## 글삭제 - 기능 완성
+
+* delete_process페이지로 title정보를 가져와 fs.unlink(path, callback)을 사용하여 file을 삭제
+
+* 리다이렉션으로 홈으로 이동시킴
+
+  ```javascript
+  else if(pathname === '/delete_process'){
+        var body = '';
+        request.on('data', function(data){
+            body = body + data;
+        });
+        request.on('end', function(){
+            var post = qs.parse(body);
+            var id = post.id;
+            fs.unlink(`data/${id}`, function(error){
+              response.writeHead(302, {Location: `/`});
+              response.end();
+            })
+        });
+      }
+  ```
+
+  
+

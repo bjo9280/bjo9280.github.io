@@ -176,12 +176,3 @@ pm2 log
             var description = post.description
         });
   ```
-
-  
-
-
-
-
-
-
-

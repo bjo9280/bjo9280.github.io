@@ -1,5 +1,5 @@
 ---
-title: "Node.js 스터디 (진행중)"
+title: "Node.js CRUD 스터디"
 date: 2020-01-02 00:00:00 +0900
 categories: Node.js
 ---

@@ -76,7 +76,9 @@ scripts에 명시된 방법으로 실행 (or npm으로 설치하지않고 node m
 npm run train
 ```
 
-# Main
+
+
+# Main소스
 
 require를 사용하여  tfjs-node, data.js, model.js에서 module.exports됨 함수를 가져옴
 

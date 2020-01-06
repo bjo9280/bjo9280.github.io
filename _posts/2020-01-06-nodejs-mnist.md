@@ -23,7 +23,7 @@ categories: TensorFlow.js
 
 참고 : <https://velog.io/@ashnamuh/자바스크립트-콜백부터-async-await까지-비동기-처리>
 
-# var let const
+# var / let / const
 
 ES6는 var의 단점을 보완하기 위해 let과 const를 도입
 

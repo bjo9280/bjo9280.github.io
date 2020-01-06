@@ -21,7 +21,7 @@ categories: TensorFlow.js
 5. async 함수 내부에서 await을 사용해 동기적으로 코드를 작성할수있음.
 6. 에러 해들링과 if문 분기 또한 동기적으로 작성가능 
 
-출처 : <https://velog.io/@ashnamuh/자바스크립트-콜백부터-async-await까지-비동기-처리>
+참고 : <https://velog.io/@ashnamuh/자바스크립트-콜백부터-async-await까지-비동기-처리>
 
 # var let const
 

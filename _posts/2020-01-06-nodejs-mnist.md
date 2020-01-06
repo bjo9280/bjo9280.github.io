@@ -10,7 +10,7 @@ categories: TensorFlow.js
 
 
 
-## async & await
+# async & await
 
 1. Callback은 비동기적인 작업이 길어질수록 콜백이 깊어지고 콜백 내에서 if문 분기와 에러 핸들링을 어렵게함
 2. 이를 해결하기위해 Pomise패턴이 등작하여 비동기 작업을 콜백이 아닌 then으로 연결하고 catch로 에러 핸들링을 편하게 할 수 있다.
@@ -21,7 +21,7 @@ categories: TensorFlow.js
 
 출처 : <https://velog.io/@ashnamuh/자바스크립트-콜백부터-async-await까지-비동기-처리>
 
-## var let const
+# var let const
 
 ES6는 var의 단점을 보완하기 위해 let과 const를 도입
 
@@ -33,11 +33,11 @@ ES6는 var의 단점을 보완하기 위해 let과 const를 도입
 
 참고 : <https://velog.io/@marcus/Javascript-Hoisting>
 
-## NPM
+# NPM
 
 Node Package Manager로 Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공 
 
-## 실행방법
+# 실행방법
 
 npm install로 package.json에 명시된 패키지를 한번에 설치
 
@@ -76,7 +76,7 @@ scripts에 명시된 방법으로 실행 (or npm으로 설치하지않고 node m
 npm run train
 ```
 
-## main
+# Main
 
 require를 사용하여  tfjs-node, data.js, model.js에서 module.exports됨 함수를 가져옴
 

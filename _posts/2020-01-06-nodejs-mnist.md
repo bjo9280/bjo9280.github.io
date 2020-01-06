@@ -8,7 +8,7 @@ categories: TensorFlow.js
 >
 > 첫 번째 예제는 Web browser와 연동되어 있지 않음
 >
-> node.js을 이해하기 위해 javascript 문법 정리
+> node.js 공부하면서 공부한 javascript 문법 정리
 
 
 

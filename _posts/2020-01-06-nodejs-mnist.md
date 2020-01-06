@@ -6,9 +6,7 @@ categories: TensorFlow.js
 
 > tensorflow.js MNIST예제 스터디 <https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>   
 >
-> 첫 번째 예제는 Web browser와 연동되어 있지 않음
->
-> node.js 공부하면서 공부한 javascript 문법 정리
+> 첫 번째 예제는 Web browser와 연동되어 있지 않음 / javascript 문법 정리
 
 
 

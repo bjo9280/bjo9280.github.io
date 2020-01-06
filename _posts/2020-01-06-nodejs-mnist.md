@@ -4,16 +4,18 @@ date: 2020-01-06 00:00:00 +0900
 categories: TensorFlow.js
 ---
 
-> tensorflow.js MNIST예제와 <https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>  
+> tensorflow.js MNIST예제 스터디<https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>   
 >
-> javascript에 익숙치 않기 때문에 예제 소스의 생소한 부분도 스터디
+> 첫 번째 예제는 Web browser와 연동되어 있지 않음
+>
+> node.js을 이해하기 위해 javascript 문법 정리
 
 
 
 # async & await
 
 1. Callback은 비동기적인 작업이 길어질수록 콜백이 깊어지고 콜백 내에서 if문 분기와 에러 핸들링을 어렵게함
-2. 이를 해결하기위해 Pomise패턴이 등작하여 비동기 작업을 콜백이 아닌 then으로 연결하고 catch로 에러 핸들링을 편하게 할 수 있다.
+2. 이를 해결하기위해 Pomise패턴이 등작하여 비동기 작업을 콜백이 아닌 then으로 연결하고 catch로 에러 핸들링을 편하게 할 수 있음
 3. 하지만 잘못하용하면 then이 깊어 질 수 있고 if문 분기와 특정 에러 핸들링은 여전히 어려움 
 4. 이를 해결하기위해 ES7에 async await가 등장함
 5. async 함수 내부에서 await을 사용해 동기적으로 코드를 작성할수있음.

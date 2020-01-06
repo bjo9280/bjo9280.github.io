@@ -1,5 +1,5 @@
 ---
-title: "TensorFlow.js MNIST 예제(작성중)"
+title: "TensorFlow.js MNIST 예제(1)"
 date: 2020-01-06 00:00:00 +0900
 categories: TensorFlow.js
 ---

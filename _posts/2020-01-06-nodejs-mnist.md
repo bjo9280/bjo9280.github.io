@@ -4,7 +4,7 @@ date: 2020-01-06 00:00:00 +0900
 categories: TensorFlow.js
 ---
 
-> tensorflow.js MNIST예제 스터디<https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>   
+> tensorflow.js MNIST예제 스터디 <https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>   
 >
 > 첫 번째 예제는 Web browser와 연동되어 있지 않음
 >

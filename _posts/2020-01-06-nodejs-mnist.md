@@ -76,9 +76,12 @@ scripts에 명시된 방법으로 실행 (or npm으로 설치하지않고 node m
 npm run train
 ```
 
+## main
 
+require를 사용하여  tfjs-node, data.js, model.js에서 module.exports됨 함수를 가져옴
 
-## main.js
+* model.js : conv 모델 정보를 가짐
+* data.js : mnist dataset 처리에 필요한 함수
 
 ```javascript
 const tf = require('@tensorflow/tfjs-node');
@@ -86,7 +89,11 @@ const argparse = require('argparse');
 
 const data = require('./data');
 const model = require('./model');
+```
 
+data.getTrainData()에서 가져온 train, test이미지와 레이블링 정보를 가져와 model.fit()으로 학습 
+
+```javascript
 async function run(epochs, batchSize, modelSavePath) {
   await data.loadData();
 
@@ -100,12 +107,17 @@ async function run(epochs, batchSize, modelSavePath) {
       trainImages.shape[0] * (1 - validationSplit);
   const numTrainBatchesPerEpoch =
       Math.ceil(numTrainExamplesPerEpoch / batchSize);
+    
   await model.fit(trainImages, trainLabels, {
     epochs,
     batchSize,
     validationSplit
   });
+```
 
+model.evaluate()로 testset 성능 평가 후 acc, loss값 출력 후 학습된 모델을 model.save()로 저장
+
+```javascript
   const {images: testImages, labels: testLabels} = data.getTestData();
   const evalOutput = model.evaluate(testImages, testLabels);
 
@@ -119,7 +131,11 @@ async function run(epochs, batchSize, modelSavePath) {
     console.log(`Saved model to path: ${modelSavePath}`);
   }
 }
+```
 
+parser 인자값을 받아와 run함수를 실행
+
+```javascript
 const parser = new argparse.ArgumentParser({
   description: 'TensorFlow.js-Node MNIST Example.',
   addHelp: true
@@ -144,227 +160,6 @@ run(args.epochs, args.batch_size, args.model_save_path);
 ```
 
 
-
-## model.js
-
-```javascript
-const tf = require('@tensorflow/tfjs');
-
-const model = tf.sequential();
-model.add(tf.layers.conv2d({
-  inputShape: [28, 28, 1],
-  filters: 32,
-  kernelSize: 3,
-  activation: 'relu',
-}));
-model.add(tf.layers.conv2d({
-  filters: 32,
-  kernelSize: 3,
-  activation: 'relu',
-}));
-model.add(tf.layers.maxPooling2d({poolSize: [2, 2]}));
-model.add(tf.layers.conv2d({
-  filters: 64,
-  kernelSize: 3,
-  activation: 'relu',
-}));
-model.add(tf.layers.conv2d({
-  filters: 64,
-  kernelSize: 3,
-  activation: 'relu',
-}));
-model.add(tf.layers.maxPooling2d({poolSize: [2, 2]}));
-model.add(tf.layers.flatten());
-model.add(tf.layers.dropout({rate: 0.25}));
-model.add(tf.layers.dense({units: 512, activation: 'relu'}));
-model.add(tf.layers.dropout({rate: 0.5}));
-model.add(tf.layers.dense({units: 10, activation: 'softmax'}));
-
-const optimizer = 'rmsprop';
-model.compile({
-  optimizer: optimizer,
-  loss: 'categoricalCrossentropy',
-  metrics: ['accuracy'],
-});
-
-module.exports = model;
-
-```
-
-## data.js
-
-```javascript
-const tf = require('@tensorflow/tfjs');
-const assert = require('assert');
-const fs = require('fs');
-const https = require('https');
-const util = require('util');
-const zlib = require('zlib');
-
-const readFile = util.promisify(fs.readFile);
-
-// MNIST data constants:
-const BASE_URL = 'https://storage.googleapis.com/cvdf-datasets/mnist/';
-const TRAIN_IMAGES_FILE = 'train-images-idx3-ubyte';
-const TRAIN_LABELS_FILE = 'train-labels-idx1-ubyte';
-const TEST_IMAGES_FILE = 't10k-images-idx3-ubyte';
-const TEST_LABELS_FILE = 't10k-labels-idx1-ubyte';
-const IMAGE_HEADER_MAGIC_NUM = 2051;
-const IMAGE_HEADER_BYTES = 16;
-const IMAGE_HEIGHT = 28;
-const IMAGE_WIDTH = 28;
-const IMAGE_FLAT_SIZE = IMAGE_HEIGHT * IMAGE_WIDTH;
-const LABEL_HEADER_MAGIC_NUM = 2049;
-const LABEL_HEADER_BYTES = 8;
-const LABEL_RECORD_BYTE = 1;
-const LABEL_FLAT_SIZE = 10;
-
-// Downloads a test file only once and returns the buffer for the file.
-async function fetchOnceAndSaveToDiskWithBuffer(filename) {
-  return new Promise(resolve => {
-    const url = `${BASE_URL}${filename}.gz`;
-    if (fs.existsSync(filename)) {
-      resolve(readFile(filename));
-      return;
-    }
-    const file = fs.createWriteStream(filename);
-    console.log(`  * Downloading from: ${url}`);
-    https.get(url, (response) => {
-      const unzip = zlib.createGunzip();
-      response.pipe(unzip).pipe(file);
-      unzip.on('end', () => {
-        resolve(readFile(filename));
-      });
-    });
-  });
-}
-
-function loadHeaderValues(buffer, headerLength) {
-  const headerValues = [];
-  for (let i = 0; i < headerLength / 4; i++) {
-    // Header data is stored in-order (aka big-endian)
-    headerValues[i] = buffer.readUInt32BE(i * 4);
-  }
-  return headerValues;
-}
-
-async function loadImages(filename) {
-  const buffer = await fetchOnceAndSaveToDiskWithBuffer(filename);
-
-  const headerBytes = IMAGE_HEADER_BYTES;
-  const recordBytes = IMAGE_HEIGHT * IMAGE_WIDTH;
-
-  const headerValues = loadHeaderValues(buffer, headerBytes);
-  assert.equal(headerValues[0], IMAGE_HEADER_MAGIC_NUM);
-  assert.equal(headerValues[2], IMAGE_HEIGHT);
-  assert.equal(headerValues[3], IMAGE_WIDTH);
-
-  const images = [];
-  let index = headerBytes;
-  while (index < buffer.byteLength) {
-    const array = new Float32Array(recordBytes);
-    for (let i = 0; i < recordBytes; i++) {
-      // Normalize the pixel values into the 0-1 interval, from
-      // the original 0-255 interval.
-      array[i] = buffer.readUInt8(index++) / 255;
-    }
-    images.push(array);
-  }
-
-  assert.equal(images.length, headerValues[1]);
-  return images;
-}
-
-async function loadLabels(filename) {
-  const buffer = await fetchOnceAndSaveToDiskWithBuffer(filename);
-
-  const headerBytes = LABEL_HEADER_BYTES;
-  const recordBytes = LABEL_RECORD_BYTE;
-
-  const headerValues = loadHeaderValues(buffer, headerBytes);
-  assert.equal(headerValues[0], LABEL_HEADER_MAGIC_NUM);
-
-  const labels = [];
-  let index = headerBytes;
-  while (index < buffer.byteLength) {
-    const array = new Int32Array(recordBytes);
-    for (let i = 0; i < recordBytes; i++) {
-      array[i] = buffer.readUInt8(index++);
-    }
-    labels.push(array);
-  }
-
-  assert.equal(labels.length, headerValues[1]);
-  return labels;
-}
-
-/** Helper class to handle loading training and test data. */
-class MnistDataset {
-  constructor() {
-    this.dataset = null;
-    this.trainSize = 0;
-    this.testSize = 0;
-    this.trainBatchIndex = 0;
-    this.testBatchIndex = 0;
-  }
-
-  /** Loads training and test data. */
-  async loadData() {
-    this.dataset = await Promise.all([
-      loadImages(TRAIN_IMAGES_FILE), loadLabels(TRAIN_LABELS_FILE),
-      loadImages(TEST_IMAGES_FILE), loadLabels(TEST_LABELS_FILE)
-    ]);
-    this.trainSize = this.dataset[0].length;
-    this.testSize = this.dataset[2].length;
-  }
-
-  getTrainData() {
-    return this.getData_(true);
-  }
-
-  getTestData() {
-    return this.getData_(false);
-  }
-
-  getData_(isTrainingData) {
-    let imagesIndex;
-    let labelsIndex;
-    if (isTrainingData) {
-      imagesIndex = 0;
-      labelsIndex = 1;
-    } else {
-      imagesIndex = 2;
-      labelsIndex = 3;
-    }
-    const size = this.dataset[imagesIndex].length;
-    tf.util.assert(
-        this.dataset[labelsIndex].length === size,
-        `Mismatch in the number of images (${size}) and ` +
-            `the number of labels (${this.dataset[labelsIndex].length})`);
-
-    // Only create one big array to hold batch of images.
-    const imagesShape = [size, IMAGE_HEIGHT, IMAGE_WIDTH, 1];
-    const images = new Float32Array(tf.util.sizeFromShape(imagesShape));
-    const labels = new Int32Array(tf.util.sizeFromShape([size, 1]));
-
-    let imageOffset = 0;
-    let labelOffset = 0;
-    for (let i = 0; i < size; ++i) {
-      images.set(this.dataset[imagesIndex][i], imageOffset);
-      labels.set(this.dataset[labelsIndex][i], labelOffset);
-      imageOffset += IMAGE_FLAT_SIZE;
-      labelOffset += 1;
-    }
-
-    return {
-      images: tf.tensor4d(images, imagesShape),
-      labels: tf.oneHot(tf.tensor1d(labels, 'int32'), LABEL_FLAT_SIZE).toFloat()
-    };
-  }
-}
-
-module.exports = new MnistDataset();
-```
 
 
 

@@ -28,8 +28,8 @@ categories: TensorFlow.js
 ES6는 var의 단점을 보완하기 위해 let과 const를 도입
 
 * var는 *Hoisting되는 문제를 가짐
-* let은 변수에 재 할당이 가능
-* const는 변수 재 선언, 재 할당 모두 불가능
+* let은 변수는 재 할당이 가능
+* const는 변수는 재 선언, 재 할당 모두 불가능
 
 *Hoisting : 함수 안에 있는 선언들을 모두 끌어올려서 해당 함수 유효 범위의 최상단에 선언하는 것
 

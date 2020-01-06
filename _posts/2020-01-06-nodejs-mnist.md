@@ -1,7 +1,7 @@
 ---
 title: "TensorFlow.js MNIST 예제(작성중)"
 date: 2020-01-06 00:00:00 +0900
-categories: TensorFlow.js, Node.js
+categories: TensorFlow.js Node.js
 ---
 
 > tensorflow.js MNIST예제와 <https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>  

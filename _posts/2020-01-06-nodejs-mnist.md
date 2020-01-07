@@ -23,7 +23,7 @@ categories: TensorFlow.js
 
 # var / let / const
 
-ES6는 var의 단점을 보완하기 위해 let과 const를 도입
+ES6에 var의 단점을 보완하기 위해 let과 const를 도입
 
 * var는 *Hoisting되는 문제를 가짐
 * let은 변수는 재 할당이 가능

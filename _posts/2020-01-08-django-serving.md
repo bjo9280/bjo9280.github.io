@@ -64,8 +64,6 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
     </a>
     ```
 
-    ![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web1.png)
-
 2. instances value와 prediction result를 받아올 폼생성 
 
     ##### serving_half_plus_two.html
@@ -82,14 +80,14 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
                         <input name="x_pred1" type="number" class="form-control" value="{{ x_pred1 }}" placeholder="">
                     </div>
                 </div>
-
+    
                 <div class="form-group">
                     <label class="col-md-2 control-label">input2</label>
                     <div class="col-md-3">
                         <input name="x_pred2" type="number" class="form-control" value="{{ x_pred2 }}" placeholder="">
                     </div>
                 </div>
-
+    
                 <div class="form-group">
                     <label class="col-md-2 control-label">input3</label>
                     <div class="col-md-3">
@@ -105,9 +103,10 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
                 </div>
             </div>
         </div>
-
+    
     </form>
     ```
+    ![fig2](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)
 
 3. 페이지와 데이터를 처리할 view 코드
 
@@ -119,21 +118,21 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
             x_pred1 = request.POST['x_pred1']
             x_pred2 = request.POST['x_pred2']
             x_pred3 = request.POST['x_pred3']
-
+    
             if x_pred1 == '' or x_pred2 == '' or x_pred3 == '' :
                 return render(request, 'blog/serving_half_plus_two.html')
-
+    
             load = {"instances": [float(x_pred1), float(x_pred2), float(x_pred3)]} #[1.0, 2.0, 5.0]
             r = requests.post(' http://localhost:8501/v1/models/half_plus_two:predict', json=load)
             y_pred = json.loads(r.content.decode('utf-8'))
             y_pred = y_pred['predictions']
-
+    
             context = {
                 'result': y_pred,
             }
-
+    
             return render(request, 'blog/serving_half_plus_two.html', context)
-
+    
         elif request.method == 'GET':
             return render(request, 'blog/serving_half_plus_two.html')
     ```
@@ -147,8 +146,6 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
         path('serving/', serving_half_plus_two, name='serving_half_plus_two'),
     ]
     ```
-
-![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)
 
 
 

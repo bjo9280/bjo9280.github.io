@@ -1,167 +1,159 @@
 ---
-title: "TensorFlow.js MNIST 예제(1)"
-date: 2020-01-06 00:00:00 +0900
-categories: TensorFlow.js
+title: "Deploying Tensorflow model with Django(1)"
+date: 2020-01-08 00:00:00 +0900
+categories: django TensorflowServing
 ---
 
-> tensorflow.js MNIST예제 스터디 <https://github.com/tensorflow/tfjs-examples/tree/master/mnist-node>   
+> Tensorflow Serving으로 학습 모델을 배포하고 장고로 구현된 웹 어플리케이션을 통해여 inference하는 방법
 >
-> 첫 번째 예제는 Web browser와 연동되어 있지 않음 / javascript 문법 정리
+> Serving 관련된 자세한 내용은 이전 포스트를 참고 <https://bjo9280.github.io/tensorflowserving/serving-docker_tensorflow_serving/> 
 
 
 
-# async & await
+# Server 실행
 
-1. Callback은 비동기적인 작업이 길어질수록 콜백이 깊어지고 콜백 내에서 if문 분기와 에러 핸들링을 어렵게함
-2. 이를 해결하기위해 Pomise패턴이 등작하여 비동기 작업을 콜백이 아닌 then으로 연결하고 catch로 에러 핸들링을 편하게 할 수 있음
-3. 하지만 잘못활용하면 then이 깊어 질 수 있고 if문 분기와 특정 에러 핸들링은 여전히 어려움 
-4. 이를 해결하기위해 ES7에 async await가 등장함
-5. async 함수 내부에서 await을 사용해 동기적으로 코드를 작성할수있음.
-6. 에러 해들링과 if문 분기 또한 동기적으로 작성가능 
+Tensorflow serving api와 docker을 이용하여 <https://github.com/tensorflow/serving> 에서 제공되는 half_plus_two 모델을  배포시키는 방법
 
-참고 : <https://velog.io/@ashnamuh/자바스크립트-콜백부터-async-await까지-비동기-처리>
+1. docker로 tensorflow/serving을 pull하고 git으로 tensorflow serving 소스를 clone함
 
-# var / let / const
+```shell
+# Download the TensorFlow Serving Docker image and repo
+docker pull tensorflow/serving
 
-ES6에 var의 단점을 보완하기 위해 let과 const를 도입
-
-* var는 *Hoisting되는 문제를 가짐
-* let은 변수는 재 할당이 가능
-* const는 변수는 재 선언, 재 할당 모두 불가능
-
-*Hoisting : 함수 안에 있는 선언들을 모두 끌어올려서 해당 함수 유효 범위의 최상단에 선언하는 것
-
-참고 : <https://velog.io/@marcus/Javascript-Hoisting>
-
-# NPM
-
-Node Package Manager로 Node.js에서 사용할 수 있는 모듈들을 패키지화하여 모아둔 저장소 역할과 패키지 설치 및 관리를 위한 CLI(Command line interface)를 제공 
-
-# 실행방법
-
-npm install로 package.json에 명시된 패키지를 한번에 설치
-
-```
-npm install
+git clone https://github.com/tensorflow/serving
 ```
 
-```json
-{
-  "name": "tfjs-examples-mnist-node",
-  "version": "0.1.0",
-  "description": "",
-  "main": "index.js",
-  "license": "Apache-2.0",
-  "private": true,
-  "engines": {
-    "node": ">=8.11.0"
-  },
-  "dependencies": {
-    "@tensorflow/tfjs-node": "^1.5.1",
-    "@tensorflow/tfjs-node-gpu": "^1.5.1",
-    "argparse": "^1.0.10"
-  },
-  "scripts": {
-    "train": "node main.js"
-  },
-  "devDependencies": {
-    "clang-format": "~1.2.2"
-  }
-}
+2. 다음과 같이 server을 실행시킴
+
+```shell
+# Location of demo models
+TESTDATA="$(pwd)/serving/tensorflow_serving/servables/tensorflow/testdata"
+
+# Start TensorFlow Serving container and open the REST API port
+docker run -t --rm -p 8501:8501 \
+    -v "$TESTDATA/saved_model_half_plus_two_cpu:/models/half_plus_two" \
+    -e MODEL_NAME=half_plus_two \
+    tensorflow/serving &
 ```
 
-scripts에 명시된 방법으로 실행 (or npm으로 설치하지않고 node main.js로 실행가능) 
+![fig1](https://bjo9280.github.io/assets/images/2020-01-08/serving.png)
 
-```
-npm run train
+3.  Query로 결과값을 request하는 방법
+
+```shell
+# Query the model using the predict API
+curl -d '{"instances": [1.0, 2.0, 5.0]}' \
+    -X POST http://localhost:8501/v1/models/half_plus_two:predict
+
+# Returns => { "predictions": [2.5, 3.0, 4.5] }
 ```
 
 
 
-# Main소스
+# Web Application 만들기
 
-require를 사용하여  tfjs-node, data.js, model.js에서 module.exports됨 함수를 가져옴
+tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페이지에서 수행하도록 만들것임
 
-* model.js : conv 모델 정보를 가짐
-* data.js : mnist dataset 처리에 필요한 함수
+1. 버튼 생성
 
-```javascript
-const tf = require('@tensorflow/tfjs-node');
-const argparse = require('argparse');
+##### base.html
 
-const data = require('./data');
-const model = require('./model');
+```html
+<a class="serving" href="{% url 'serving_half_plus_two' %}">
+    <button type="button" class="btn btn">half_plus_two</button>
+</a>
 ```
 
-data.getTrainData()에서 가져온 train, test이미지와 레이블링 정보를 가져와 model.fit()으로 학습 
+![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web1.png)
 
-```javascript
-async function run(epochs, batchSize, modelSavePath) {
-  await data.loadData();
+2. instances value와 prediction result를 받아올 폼생성 
 
-  const {images: trainImages, labels: trainLabels} = data.getTrainData();
-  model.summary();
+##### serving_half_plus_two.html
 
-  let epochBeginTime;
-  let millisPerStep;
-  const validationSplit = 0.15;
-  const numTrainExamplesPerEpoch =
-      trainImages.shape[0] * (1 - validationSplit);
-  const numTrainBatchesPerEpoch =
-      Math.ceil(numTrainExamplesPerEpoch / batchSize);
-    
-  await model.fit(trainImages, trainLabels, {
-    epochs,
-    batchSize,
-    validationSplit
-  });
+```html
+<form action="" method="POST" class="form-horizontal">
+    {% csrf_token %}
+    <h2 class="post-add">half_plus_two </h2>
+        <div class="row">
+        <div class="col-sm-9">
+            <div class="form-group">
+                <label class="col-md-2 control-label">input1</label>
+                <div class="col-md-3">
+                    <input name="x_pred1" type="number" class="form-control" value="{{ x_pred1 }}" placeholder="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">input2</label>
+                <div class="col-md-3">
+                    <input name="x_pred2" type="number" class="form-control" value="{{ x_pred2 }}" placeholder="">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">input3</label>
+                <div class="col-md-3">
+                    <input name="x_pred3"  type="number" class="form-control" value="{{ x_pred3 }}" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label">Result</label>
+                <div class="col-md-3">
+                    <h4>{{ result }}</h4>
+                    <button type="submit" class="btn btn-primary btn-lg">submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
 ```
 
-model.evaluate()로 testset 성능 평가 후 acc, loss값 출력 후 학습된 모델을 model.save()로 저장
+3. 페이지와 데이터를 처리할 view 코드
 
-```javascript
-  const {images: testImages, labels: testLabels} = data.getTestData();
-  const evalOutput = model.evaluate(testImages, testLabels);
+##### views.py
 
-  console.log(
-      `\nEvaluation result:\n` +
-      `  Loss = ${evalOutput[0].dataSync()[0].toFixed(3)}; `+
-      `Accuracy = ${evalOutput[1].dataSync()[0].toFixed(3)}`);
+```python
+def serving_half_plus_two(request):
+    if request.method == 'POST':
+        x_pred1 = request.POST['x_pred1']
+        x_pred2 = request.POST['x_pred2']
+        x_pred3 = request.POST['x_pred3']
 
-  if (modelSavePath != null) {
-    await model.save(`file://${modelSavePath}`);
-    console.log(`Saved model to path: ${modelSavePath}`);
-  }
-}
+        if x_pred1 == '' or x_pred2 == '' or x_pred3 == '' :
+            return render(request, 'blog/serving_half_plus_two.html')
+
+        load = {"instances": [float(x_pred1), float(x_pred2), float(x_pred3)]} #[1.0, 2.0, 5.0]
+        r = requests.post(' http://localhost:8501/v1/models/half_plus_two:predict', json=load)
+        y_pred = json.loads(r.content.decode('utf-8'))
+        y_pred = y_pred['predictions']
+
+        context = {
+            'result': y_pred,
+        }
+
+        return render(request, 'blog/serving_half_plus_two.html', context)
+
+    elif request.method == 'GET':
+        return render(request, 'blog/serving_half_plus_two.html')
 ```
 
-parser 인자값을 받아와 run함수를 실행
+4. url링크
 
-```javascript
-const parser = new argparse.ArgumentParser({
-  description: 'TensorFlow.js-Node MNIST Example.',
-  addHelp: true
-});
-parser.addArgument('--epochs', {
-  type: 'int',
-  defaultValue: 2,
-  help: 'Number of epochs to train the model for.'
-});
-parser.addArgument('--batch_size', {
-  type: 'int',
-  defaultValue: 128,
-  help: 'Batch size to be used during model training.'
-})
-parser.addArgument('--model_save_path', {
-  type: 'string',
-  help: 'Path to which the model will be saved after training.'
-});
-const args = parser.parseArgs();
+##### urls.py
 
-run(args.epochs, args.batch_size, args.model_save_path);
+```python
+from django.contrib import admin
+from django.conf.urls import url
+from django.urls import path
+from blog.views import post_list, post_detail, post_add, post_delete, serving_half_plus_two
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('serving/', serving_half_plus_two, name='serving_half_plus_two'),
+]
 ```
 
 
 
-
-
+![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)

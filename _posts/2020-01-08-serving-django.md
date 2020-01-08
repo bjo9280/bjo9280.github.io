@@ -130,7 +130,7 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
 3. 데이터를 처리할 view 코드
 
    * html페이지에서 POST로 전송된  x_pred1,2,3값을 가져옴
-   * float로 타입 변환 후에 'http://localhost:8501/v1/models/half_plus_two:predict로 requests함
+   * float로 타입 변환 후에 http://localhost:8501/v1/models/half_plus_two:predict로 requests함
    * return한 결과를 result에 저장 후 리다이렉션
 
    ##### views.py

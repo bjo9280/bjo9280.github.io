@@ -48,9 +48,13 @@ Tensorflow serving api와 docker을 이용하여 <https://github.com/tensorflow/
 
 #  Web Application 만들기
 
-tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페이지에서 수행하도록 만들것임
+* tensorflow serving에 request를 보내는 역할을 django로 구현된 웹 페이지에서 수행하도록 만들것임
+* django로 구현된 base페이지는 [이곳](https://nachwon.github.io/django-1-setting)에서 blog만드는 방법을 따라했으며
+* 위의 소스에 serving코드를 추가하였음 전체 소스는  [여기](https://github.com/bjo9280/django_tensorflow_serving)를참고
 
-1. 버튼 생성
+1. 버튼 / url 생성
+
+   * url path name이 serving_half_plus_two으로 링크되도록 버튼생성 
 
    ##### base.html
 
@@ -62,11 +66,11 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
    {% endraw %}
    ```
 
-2. url링크 생성
-
    ##### urls.py
 
    ```python
+   from blog.views import serving_half_plus_two
+   
    urlpatterns = [
        ...
        path('serving/', serving_half_plus_two, name='serving_half_plus_two'),
@@ -76,7 +80,10 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
 
    
 
-3. input값을 보낼 폼과 prediction 결과를 받아올 form 생성 
+2. input값을 보낼 폼과 prediction 결과를 받아올 form 생성 
+
+   * input name이 x_pred1,2,3에서 value값을 가져와서 view.py에 POST방식으로 전송해줌
+   * views.py에서 전송해준 데이터를 결과값을 예측하여 {{ result }}에 보여줌
 
    ##### serving_half_plus_two.html
 
@@ -122,7 +129,10 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
 
    ![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)
 
-4. 데이터를 처리할 view 코드
+3. 데이터를 처리할 view 코드
+
+   * html페이지에서 POST로 전송된  x_pred1,2,3값을 가져옴
+   * float로 타입변환 후에 json으로 requests처리
 
    ##### views.py
 

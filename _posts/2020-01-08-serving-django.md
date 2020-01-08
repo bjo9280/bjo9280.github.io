@@ -6,7 +6,7 @@ categories: Django TensorflowServing
 
 > 이번 포스트에서는 간단하게 Tensorflow Serving api에서 제공되는 half_plus_two모델을 serving해보고 Django로 구현된 웹 어플리케이션을 통해여 결과값을 request하는 방법을 작성
 >
-> Serving 관련된 자세한 내용은 이전 포스트를 참고 <https://bjo9280.github.io/tensorflowserving/serving-docker_tensorflow_serving/> 
+> Tensorflow Serving 관련된 자세한 내용은 이전 포스트를 참고 <https://bjo9280.github.io/tensorflowserving/serving-docker_tensorflow_serving/> 
 
 # Server 실행
 
@@ -158,7 +158,6 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
    
        elif request.method == 'GET':
            return render(request, 'blog/serving_half_plus_two.html')
-   ​```
    ```
 
 4. 최종 페이지

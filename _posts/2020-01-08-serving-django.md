@@ -80,7 +80,6 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
 
    ```html
    <form action="" method="POST" class="form-horizontal">
-       {% csrf_token %}
        <h2 class="post-add">half_plus_two </h2>
            <div class="row">
            <div class="col-sm-9">
@@ -115,6 +114,8 @@ tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페�
        </div>
    </form>
    ```
+
+   ![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)
 
 4. 데이터를 처리할 view 코드
 

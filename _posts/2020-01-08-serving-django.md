@@ -45,3 +45,116 @@ Tensorflow serving api와 docker을 이용하여 <https://github.com/tensorflow/
    
    # Returns => { "predictions": [2.5, 3.0, 4.5] }
    ```
+
+#  Web Application 만들기
+
+tensorflow serving에 request를 보내는 역할을 django로 구현된 웹페이지에서 수행하도록 만들것임
+
+1. 버튼 생성
+
+   ##### base.html
+
+   ```html
+   {% raw %}
+   <a class="serving" href="{% url 'serving_half_plus_two' %}">
+       <button type="button" class="btn btn">half_plus_two</button>
+   </a>
+   {% endraw %}
+   ```
+
+2. url링크 생성
+
+   ##### urls.py
+
+   ```python
+   urlpatterns = [
+       ...
+       path('serving/', serving_half_plus_two, name='serving_half_plus_two'),
+       ...
+   ]
+   ```
+
+   
+
+3. input값을 보낼 폼과 prediction 결과를 받아올 form 생성 
+
+   ##### serving_half_plus_two.html
+
+   ```html
+   {% raw %}
+   <form action="" method="POST" class="form-horizontal">
+       {% csrf_token %}
+       <h2 class="post-add">half_plus_two </h2>
+           <div class="row">
+           <div class="col-sm-9">
+               <div class="form-group">
+                   <label class="col-md-2 control-label">input1</label>
+                   <div class="col-md-3">
+                       <input name="x_pred1" type="number" class="form-control" value="{{ x_pred1 }}" placeholder="">
+                   </div>
+               </div>
+   
+               <div class="form-group">
+                   <label class="col-md-2 control-label">input2</label>
+                   <div class="col-md-3">
+                       <input name="x_pred2" type="number" class="form-control" value="{{ x_pred2 }}" placeholder="">
+                   </div>
+               </div>
+   
+               <div class="form-group">
+                   <label class="col-md-2 control-label">input3</label>
+                   <div class="col-md-3">
+                       <input name="x_pred3"  type="number" class="form-control" value="{{ x_pred3 }}" placeholder="">
+                   </div>
+               </div>
+               <div class="form-group">
+                   <label class="col-md-2 control-label">Result</label>
+                   <div class="col-md-3">
+                       <h4>{{ result }}</h4>
+                       <button type="submit" class="btn btn-primary btn-lg">submit</button>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </form>
+   {% endraw %}
+   ```
+
+   ![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)
+
+4. 데이터를 처리할 view 코드
+
+   ##### views.py
+
+   ```python
+   def serving_half_plus_two(request):
+       if request.method == 'POST':
+           x_pred1 = request.POST['x_pred1']
+           x_pred2 = request.POST['x_pred2']
+           x_pred3 = request.POST['x_pred3']
+   
+           if x_pred1 == '' or x_pred2 == '' or x_pred3 == '' :
+               return render(request, 'blog/serving_half_plus_two.html')
+   
+           load = {"instances": [float(x_pred1), float(x_pred2), float(x_pred3)]} #[1.0, 2.0, 5.0]
+           r = requests.post(' http://localhost:8501/v1/models/half_plus_two:predict', json=load)
+           y_pred = json.loads(r.content.decode('utf-8'))
+           y_pred = y_pred['predictions']
+   
+           context = {
+               'result': y_pred,
+           }
+   
+           return render(request, 'blog/serving_half_plus_two.html', context)
+   
+       elif request.method == 'GET':
+           return render(request, 'blog/serving_half_plus_two.html')
+   ​```
+   ```
+
+   
+
+
+
+
+

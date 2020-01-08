@@ -82,8 +82,8 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
 
 2. input값을 보낼 form과 prediction 결과를 받아올 form 생성 
 
-   * input name이 x_pred1,2,3에서 value값을 가져와서 view.py에 POST방식으로 전송해줌
-   * views.py에서 전송해준 데이터를 결과값을 예측하여 {{ result }}로 보냄
+   * input name이 x_pred1,2,3인 form에서 value값을 가져와서 view.py에 POST방식으로 전송해줌
+   * views.py에서 전송해준 데이터의 결과값을 예측하여 {{ result }}로 보냄
 
    ##### serving_half_plus_two.html
 
@@ -130,7 +130,8 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
 3. 데이터를 처리할 view 코드
 
    * html페이지에서 POST로 전송된  x_pred1,2,3값을 가져옴
-   * float로 타입변환 후에 json으로 requests처리
+   * float로 타입 변환 후에 'http://localhost:8501/v1/models/half_plus_two:predict로 requests함
+   * return한 결과를 result에 저장 후 리다이렉션
 
    ##### views.py
 
@@ -160,7 +161,7 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
    ​```
    ```
 
-4. 결과물 페이지
+4. 최종 페이지
 
    ![fig3](https://bjo9280.github.io/assets/images/2020-01-08/web2.png)
 

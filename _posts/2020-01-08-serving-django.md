@@ -48,9 +48,7 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
 
 #  Web Application 만들기
 
-* Tensorflow serving에 request를 보내는 역할을 django로 구현된 웹 페이지에서 수행하도록 만들것임
-* django로 구현된 base어플리케이션은 [이곳](https://nachwon.github.io/django-1-setting)에서 blog 만드는 방법을 따라했으며
-* 위의 코드에 serving하는 코드를 추가하였음 전체 소스는  [여기](https://github.com/bjo9280/django_tensorflow_serving)를참고
+* Tensorflow serving에 request를 보내는 역할을 django로 구현된 웹 페이지에서 수행하도록 작업
 
 1. 버튼 / url 생성
 

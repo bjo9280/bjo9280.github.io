@@ -4,29 +4,29 @@ date: 2020-01-21 00:00:00 +0900
 categories: Django TensorflowServing
 ---
 
-> 이번 포스트에서는 간단하게 Tensorflow Serving api에서 제공되는 half_plus_two모델을 serving해보고 Django로 구현된 웹 어플리케이션을 통해여 결과값을 request하는 방법을 작성
+> 이번 포스트에서는 이미지 분류모델을 serving 하고 웹어플리케이션을 통해 요청
 >
 > Tensorflow Serving 관련된 자세한 내용은 이전 포스트를 참고 <https://bjo9280.github.io/tensorflowserving/serving-docker_tensorflow_serving/> 
 
-# Server 실행
+# Inference Server 실행
 
-1. 
-
-   ```shell
-   
-   ```
-   ```shell
-   
-   ```
-
-   
+1. AWS에서 제공하는 예제의 imagenet 데이터셋으로 학습시킨 Inception모델 다운로드 
 
    ```shell
-   
+   curl -O https://s3-us-west-2.amazonaws.com/aws-tf-serving-ei-example/inception.zip
+   ```
+2. Server 실행
+
+   ```shell
+   bazel-bin/tensorflow_serving/model_servers/tensorflow_model_server \
+   --port=9000 \
+   --model_name=inception \
+   --model_base_path=/tmp/SERVING_INCEPTION
    ```
 
 
-#  Web Application 만들기
+
+#  Web Application(client) 만들기
 
 
 

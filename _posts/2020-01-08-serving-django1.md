@@ -8,7 +8,7 @@ categories: Django TensorflowServing
 >
 > Tensorflow Serving 관련된 자세한 내용은 이전 포스트를 참고 <https://bjo9280.github.io/tensorflowserving/serving-docker_tensorflow_serving/> 
 
-# Server 실행
+# Inference Server 실행
 
 Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포시키는 방법
 
@@ -46,7 +46,7 @@ Tensorflow serving api와 docker을 이용하여 half_plus_two 모델을  배포
    # Returns => { "predictions": [2.5, 3.0, 4.5] }
    ```
 
-#  Web Application 만들기
+#  Web Application (client)만들기
 
 * Tensorflow serving에 request를 보내는 역할을 django로 구현된 웹 페이지에서 수행하도록 작업
 *  django로 구현된 base어플리케이션은 [이곳](https://nachwon.github.io/django-1-setting)에서 blog 만드는 방법을 따라했으며 

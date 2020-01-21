@@ -1,5 +1,5 @@
 ---
-title: "Deploying Tensorflow model with Django(2)(작성중)"
+title: "Deploying Tensorflow model with Django(2"
 date: 2020-01-21 00:00:00 +0900
 categories: Django TensorflowServing
 ---
@@ -43,7 +43,7 @@ categories: Django TensorflowServing
 
 #  Web Application(client) 만들기
 
-* 업로드시킨 이미지를 inferecne 하고 결과를 리다이렉션하여 테이블로 결과값을 리턴하는 웹페이지구현
+* 업로드시킨 이미지를 inferecne 하고 결과를 리다이렉션하여 테이블로 결과값을 리턴하는 웹페이지 구현
 
 ## 이미지 Upload
 
@@ -110,7 +110,7 @@ categories: Django TensorflowServing
    });
    ```
 
-3. MEDIA폴더에 업로드
+3. MEDIA폴더에 업로드(설정된 폴더로 이미지를 저장시킴)
 
    ##### settings.py
 
@@ -139,6 +139,8 @@ categories: Django TensorflowServing
    ##### view.py
 
    ```python
+   from django.core.files.storage import FileSystemStorage
+   
    def image_cls(request):
    
        if request.method == 'POST':
@@ -154,7 +156,7 @@ categories: Django TensorflowServing
 
 ## Client 요청
 
-1. client요청
+1. client요청 img_cls 함수에서 결과값을 가져와 리다이렉션
 
    ##### view.py
 
@@ -170,7 +172,7 @@ categories: Django TensorflowServing
            filename = fs.save(myfile.name, myfile)
            uploaded_file_url = fs.url(filename)
            result = img_cls(CLS_SERVING_IP, BASE_DIR + uploaded_file_url)
-           print(BASE_DIR + uploaded_file_url)
+      
            return render(request, 'page/image_cls.html', {'uploaded_file_url':uploaded_file_url,'results': result })
    
        return render(request, 'page/image_cls.html')
@@ -178,7 +180,7 @@ categories: Django TensorflowServing
 
 
 
-2. client
+2. 받아온 result의 classes, scores값을 list로 저장하여 return (top3의 결과값만 받아옴)
 
    ##### serving.py
 
@@ -207,15 +209,15 @@ categories: Django TensorflowServing
 
    
 
-## 결과
+## 결과 페이지
 
-1. 결과를 보여주는 Prediction form
+1. view.py에서 results를 받아와 table로 결과를 보여줌
 
-   - view.py에서 results를 받아옴
-   - table로 결과를 보여줌 
+   ##### image_cls.html 
 
    ```html
    {% raw %}
+   ...
    <div class="col-lg-3">
                <div class="card shadow mb-4">
                    <div class="card-header py-3">
@@ -248,7 +250,7 @@ categories: Django TensorflowServing
        {% endraw %}
    ```
 
-2. 최종 페이지
+2. 최종페이지
 
    ![fig3](https://bjo9280.github.io/assets/images/2020-01-21/result.png)
 

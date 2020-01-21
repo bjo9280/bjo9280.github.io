@@ -156,13 +156,13 @@ categories: Django TensorflowServing
 
 ## Client 요청
 
-1. client요청하는 img_cls 함수에서 결과값을 가져와 리다이렉션
+1. client요청하는 predict 함수에서 결과값을 가져와 리다이렉션
 
    ##### view.py
 
    ```python
    from django.conf import settings
-   from .serving import img_cls
+   from .serving import predict
    
    BASE_DIR = getattr(settings, "BASE_DIR", None)
    CLS_SERVING_IP = getattr(settings, "CLS_SERVING_IP", None)
@@ -175,7 +175,7 @@ categories: Django TensorflowServing
            fs = FileSystemStorage()
            filename = fs.save(myfile.name, myfile)
            uploaded_file_url = fs.url(filename)
-           result = img_cls(CLS_SERVING_IP, BASE_DIR + uploaded_file_url)
+           result = predict(CLS_SERVING_IP, BASE_DIR + uploaded_file_url)
       
            return render(request, 'page/image_cls.html', {'uploaded_file_url':uploaded_file_url,'results': result })
    
@@ -191,7 +191,7 @@ categories: Django TensorflowServing
    ##### serving.py
 
    ```python
-   def img_cls(server, image):
+   def predict(server, image):
    
        channel = grpc.insecure_channel(server)
        stub = prediction_service_pb2_grpc.PredictionServiceStub(channel)

@@ -156,12 +156,16 @@ categories: Django TensorflowServing
 
 ## Client 요청
 
-1. client요청 img_cls 함수에서 결과값을 가져와 리다이렉션
+1. client요청하는 img_cls 함수에서 결과값을 가져와 리다이렉션
 
    ##### view.py
 
    ```python
+   from django.conf import settings
    from .serving import img_cls
+   
+   BASE_DIR = getattr(settings, "BASE_DIR", None)
+   CLS_SERVING_IP = getattr(settings, "CLS_SERVING_IP", None)
    
    def image_cls(request):
    
@@ -180,7 +184,9 @@ categories: Django TensorflowServing
 
 
 
-2. 받아온 result의 classes, scores값을 list로 저장하여 return (top3의 결과값만 받아옴)
+2. 아래 이미지처럼 표현되는 result값에서 classes, scores값만 list로 저장하여 return (top3의 결과값만 받아옴)
+
+   ![fig](https://bjo9280.github.io/assets/images/2019-10-01/fig2.png)
 
    ##### serving.py
 
@@ -201,6 +207,7 @@ categories: Django TensorflowServing
            result_ = stub.Predict(request, 10.0)  # 10 secs timeout
    
        result = []
+       
        for i in range(3):
            result.append({'label': result_.outputs['classes'].string_val[i].decode('utf-8'), 'score' : result_.outputs['scores'].float_val[i]})
    

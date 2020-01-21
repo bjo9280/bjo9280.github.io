@@ -1,5 +1,5 @@
 ---
-title: "Deploying Tensorflow model with Django(2"
+title: "Deploying Tensorflow model with Django(2)"
 date: 2020-01-21 00:00:00 +0900
 categories: Django TensorflowServing
 ---

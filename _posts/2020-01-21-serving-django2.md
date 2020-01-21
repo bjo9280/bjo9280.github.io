@@ -209,7 +209,7 @@ categories: Django TensorflowServing
        result = []
        
        for i in range(3):
-           result.append({'label': result_.outputs['classes'].string_val[i].decode('utf-8'), 'score' : result_.outputs['scores'].float_val[i]})
+           result.append({'label': result_.outputs['classes'].string_val[i].decode('utf-8'), 'score' : round(result_.outputs['scores'].float_val[i], 4)})
    
        return result
    ```

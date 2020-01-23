@@ -156,7 +156,7 @@ categories: Django TensorflowServing
 
 ## Client 요청
 
-1. client요청하는 predict 함수에서 결과값을 가져와 리다이렉션
+1. predict 함수에서 결과값을 가져와 리다이렉션
 
    ##### view.py
 

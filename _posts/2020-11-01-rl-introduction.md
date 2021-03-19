@@ -43,7 +43,7 @@ State는 Environment State와 Agent State로 나눌 수 있음
 
 ## Environment State
 
-*  $ S_t^e $ 라고 표현
+*  S<sub>t</sub><sup>asd</sup> 라고 표현
 * Environment가 가지고 있는 다양한 정보
 * Agent는 모든 환경에 대한 정보를 볼 수 없음 
 

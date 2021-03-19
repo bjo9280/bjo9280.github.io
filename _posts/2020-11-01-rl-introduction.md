@@ -43,19 +43,19 @@ State는 Environment State와 Agent State로 나눌 수 있음
 
 ## Environment State
 
-* $$S_t^e​$$ 라고 표현
+* $ S_t^e $ 라고 표현
 * Environment가 가지고 있는 다양한 정보
 * Agent는 모든 환경에 대한 정보를 볼 수 없음 
 
 ## Agent State
 
-* $$S_t^a$$ 라고 표현
+* $ S_t^a $ 라고 표현
 * Agent가 가지고 있는 다양한 정보
 * 주식 Agent라면 거래시 참고되는 지표가 될 수 있다.(ex 재무재표, 주가등)
 
 # Information State(Markov state)
 
-* 현재 상태의 조건에서 다음 상태가 발생할 확률과 과거의 모든 상태의 조건에서 다음 상태가 발생할 확률이 같을 때, 이 때의 $$S_t$$는 Markov property라고 한다.
+* 현재 상태의 조건에서 다음 상태가 발생할 확률과 과거의 모든 상태의 조건에서 다음 상태가 발생할 확률이 같을 때, 이 때의 $ S_t $는 Markov property라고 한다.
 
 * 현재 주어진 상태는 과거의 모든 history 정보를 포함하고 있기 때문에 현재의 정보가 중요하며, 과거의 정보들은 의미가 없어진다.
 
@@ -78,7 +78,7 @@ State는 Environment State와 Agent State로 나눌 수 있음
 ## Fully observability
 
 * Agent가 모든 정보를 알 수 있는 경우를 Fully observability라고 함.
-* $$O_t=S_t^a=S_t^e$$
+* $ O_t=S_t^a=S_t^e $
 * 이러한 것을 Markov decision process(MDP)라고 함.
 
 ## Partial Observability

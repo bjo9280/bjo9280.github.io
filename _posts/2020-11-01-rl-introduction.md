@@ -4,7 +4,9 @@ date: 2020-11-01 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---
 
-> 강화학습의 이론을 기본부터 공부 하기 위해서 UCL Courese On RL(https://www.davidsilver.uk/teaching/) 강의를 보면서 정리 1장에서는 강화학습을 소개한다.
+> 강화학습의 이론을 기본부터 공부 하기 위해서 [UCL Courese On RL](https://www.davidsilver.uk/teaching/) 강의를 보면서 정리 
+>
+> 1장에서는 전반적인 용어 정리와 강화학습에 대해 소개한다.
 
 # About RL
 

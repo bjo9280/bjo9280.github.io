@@ -58,6 +58,18 @@ State는 Environment State와 Agent State로 나눌 수 있음
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-01/markov_state.png)
 
+## RL의 문제점
+
+### Rat Example
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-01/rat_ex.png)
+
+•마지막 3개를 state로 했을때 감전을 선택
+
+•전등, 벨, 레버의 개수하면 치즈을 선택
+
+•4개의 정보를 다하면 ????
+
 
 
 

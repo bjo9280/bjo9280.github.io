@@ -27,7 +27,7 @@ categories: RL ReinforcementLearning
 * Agent와 Environment 간의 상호작용으로 Agent는 어떤 행동을 할 지를 선택
 * Agent가 Environment에서 어떤 행동을 하고 주변 정보를 관찰하고 그에 대한 보상을 받는 사이클이 계속 돌아감
 
-![fig](https://bjo9280.github.io/assets/images/2020-11-01/agentandenvironment1.png)
+![fig](https://bjo9280.github.io/assets/images/2020-11-01/agent_environment1.png)
 
 
 

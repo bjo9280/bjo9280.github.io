@@ -143,3 +143,24 @@ categories: RL ReinforcementLearning
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_matrix2.png)
 
+# Optimal value Function
+
+## Example: Optimal Value Function for Student MDP 
+
+## Example: Optimal Action-Value Function for Student MDP
+
+# Optimal Policy
+
+## Finding an Optimal Policy
+
+## Example: Optimal Policy for Student MDP
+
+# Bellman Optimality Equation
+
+## Bellman Optimality Equation for v∗ 
+
+## Bellman Optimality Equation for Q∗ 
+
+## Example: Bellman Optimality Equation in Student MDP
+
+## Solving the Bellman Optimality Equation

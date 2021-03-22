@@ -1,6 +1,6 @@
 ---
-title: "Introduction to Reinforcement Learning"
-date: 2020-11-01 00:00:00 +0900
+title: "Markov Decision Processes"
+date: 2020-11-15 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---
 

@@ -31,7 +31,7 @@ categories: RL ReinforcementLearning
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/markov_process.png)
 
-# Example : Student Markov Chain
+## Example : Student Markov Chain
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/markov_chain.png)
 
@@ -43,19 +43,19 @@ categories: RL ReinforcementLearning
 
   ![fig](https://bjo9280.github.io/assets/images/2020-11-15/markov_reward.png)
 
-# Example : Student MRP
+## Example : Student MRP
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_mrp.png)
 
-# Return / value function
+## Return / value function
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/return_value.png)
 
-# Example : Student MRP Returns
+## Example : Student MRP Returns
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_mrp_return.png)
 
-# Example : State-Value Function Student MRP 
+## Example : State-Value Function Student MRP 
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_mrp_state-value.png)
 
@@ -77,17 +77,69 @@ categories: RL ReinforcementLearning
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_matrix.png)
 
-# Solving the Bellman Equation
+## Solving the Bellman Equation
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_solving.png)
 
+# Markov Decision Process
 
+* MRP에 의사결정에 대한 Action을 추가
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/markov_decision.png)
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_mdp.png)
 
+## Policy
 
+* 현재 state에 대하여 어떤 action을 할 확률
+* 과거의 정보는 고려하지 않고 action
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/mdp_policy.png)
 
+* policy의 개념을 Markov process에 적용하여 표현하면 P<sub>(s,s′)</sub><sup>π</sup>
+* Reward에 적용하면 R<sub>s</sub><sup>π</sup>
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/mdp_policy2.png)
 
+## Value Function
+
+* state s에서 policy를 따르는 v 가 되며 이것은 s에서 policy를 따르는 보상들의 모든 합 
+* state에 대한 value뿐만 아니라 agent가 하는 action에 대해서도 value를 측정 해야함
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/mdp_value.png)
+
+## Example: State-Value Function for Student MDP 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_statevalue.png)
+
+## Bellman Expectation Equation 
+
+* Bellman equation을 사용해서 분리하면 다음과 같이 됨
+* q도 동일하게 표현하면  s에서 어떤 a를 했을 때의 가치를 나타냄
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_mdp1.png)
+
+## Bellman Expectation Equation for V<sup>π</sup>
+
+* 현재 state s에서 policy를 따르는 v는  두가지 action 중에 하나에 대한 action a을 했을 때와   나머지 action에 대한 q를 합치면 v를 구성하게 됨 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_mdp2.png)
+
+## Bellman Expectation Equation for Q<sup>π</sup>
+
+* 또 현재 state s 에서 action a를 할 때 policy를 따르는 q 는   그로 인해서 받게 되는 reward r과 다음 state s' 에서의 policy를 따르는 v 값에 따라 결정됨 e
+
+  ![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_mdp3.png)
+
+## Bellman Expectation Equation for V<sup>π</sup>, Q<sup>π</sup>
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_mdp4.png)
+
+## Example: Bellman Expectation Equation in Student MDP 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_bellman_mdp.png)
+
+## Bellman Expectation Equation (Matrix Form)
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_matrix2.png)
 

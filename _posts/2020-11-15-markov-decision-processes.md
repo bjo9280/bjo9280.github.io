@@ -145,22 +145,62 @@ categories: RL ReinforcementLearning
 
 # Optimal value Function
 
+* state-value function이 갖는 값이 최대값이 되도록 하는 max값이 최적의 v
+
+* 마찬가지로 action-value function이 갖는 값이 최대값이 되도록 하는 max를 구한다면 이때의 q 를 q*로 표현하고 optimal action-value function이라고함
+
+  ![fig](https://bjo9280.github.io/assets/images/2020-11-15/optibal_value.png)
+
 ## Example: Optimal Value Function for Student MDP 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_optimal_value.png)
 
 ## Example: Optimal Action-Value Function for Student MDP
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_optimal_action.png)
+
 # Optimal Policy
+
+* 모든 state에 대하여 만약 policy를 따르는 v(s)가 다른 policy'를 따르는 v(s)보다 크거나 같다면 policy가 policy' 보다도 더 좋거나 같다
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/optimal_policy.png)
+
+
 
 ## Finding an Optimal Policy
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/finding_optimal_policy.png)
+
+
+
 ## Example: Optimal Policy for Student MDP
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_optimal_policy.png)
+
+
 
 # Bellman Optimality Equation
 
 ## Bellman Optimality Equation for v∗ 
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal1.png.png)
+
 ## Bellman Optimality Equation for Q∗ 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal2.png.png)
+
+## Bellman Optimality Equation for v∗ 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal3.png.png)
+
+## Bellman Optimality Equation for Q∗ 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal4.png.png)
 
 ## Example: Bellman Optimality Equation in Student MDP
 
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_bellman_optimal.png)
+
 ## Solving the Bellman Optimality Equation
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/ex_bellman_optimal_solving.png)

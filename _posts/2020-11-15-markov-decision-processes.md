@@ -183,19 +183,19 @@ categories: RL ReinforcementLearning
 
 ## Bellman Optimality Equation for v∗ 
 
-![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal1.png.png)
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal1.png)
 
 ## Bellman Optimality Equation for Q∗ 
 
-![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal2.png.png)
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal2.png)
 
 ## Bellman Optimality Equation for v∗ 
 
-![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal3.png.png)
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal3.png)
 
 ## Bellman Optimality Equation for Q∗ 
 
-![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal4.png.png)
+![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_optimal4.png)
 
 ## Example: Bellman Optimality Equation in Student MDP
 

@@ -117,9 +117,28 @@ State는 Environment State와 Agent State로 나눌 수 있음
 ## Model
 
 * 현재 상태에서 어떤 행동을 했을 때 환경이 줄 것이라고 예상되는 정보 (다음 상태 정보와 보상을 표현)
-
 * *P* predicts the next state 
-* R predicts the next (immediate) reward ![fig](https://bjo9280.github.io/assets/images/2020-11-01/model.png)
+* R predicts the next (immediate) reward 
+
+
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-01/model.png)
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-01/maze_model.png)
+
+# Categorizing RL agents 
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-01/rl_agent.png)
+
+
+
+
+
+
+
+
+
+
 
 
 

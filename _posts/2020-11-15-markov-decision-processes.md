@@ -1,11 +1,9 @@
 ---
-title: "UCL Course on RL(2)"
+title: "2강: Markov Decision Processes"
 date: 2020-11-15 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---
 
-> 2강 "Markov Decision Processes" 
->
 > RL에서 가장 기본이 되는 이론인 MDP에 대해서 공부하고 정리 
 
 # Markov state 

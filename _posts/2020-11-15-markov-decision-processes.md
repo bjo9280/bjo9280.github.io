@@ -8,7 +8,7 @@ categories: RL ReinforcementLearning
 
 # Markov state 
 
-* 현재 상태의 조건에서 다음 상태가 발생할 확률과 과거의 모든 상태의 조건에서 다음 상태가 발생할 확률이 같을 때, 이 때의 S_t는 Markov property라고 한다.
+* 현재 상태의 조건에서 다음 상태가 발생할 확률과 과거의 모든 상태의 조건에서 다음 상태가 발생할 확률이 같을 때, 이 때의 S<sub>t</sub>는 Markov property라고 한다.
 * 현재 주어진 상태는 과거의 모든 history 정보를 포함하고 있기 때문에 현재의 정보가 중요하며, 과거의 정보들은 의미가 없어진다.
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/markov_state.png)

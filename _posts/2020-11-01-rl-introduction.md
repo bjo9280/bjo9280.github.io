@@ -126,7 +126,23 @@ State는 Environment State와 Agent State로 나눌 수 있음
 
 # Categorizing RL agents 
 
-![fig](https://bjo9280.github.io/assets/images/2020-11-01/rl_agent.png)
+* Value Based
+  * ~~No Policy~~
+  * Value Function
+* Policy Based
+  * Policy
+  * ~~No Value Function~~
+* Actor Critic
+  * Policy
+  * Value Function
+* Model Free
+  * Policy and/or Value Function
+  * ~~No Model~~
+* Model Based
+  * Policy and/or Value Function
+  * Model
+
+![fig](https://bjo9280.github.io/assets/images/2020-11-01/rl_agents.png)
 
 
 

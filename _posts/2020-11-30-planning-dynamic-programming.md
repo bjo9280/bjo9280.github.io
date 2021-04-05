@@ -35,7 +35,7 @@ categories: RL ReinforcementLearning
 * 회색으로 되어있는 두개의 terminal state가 존재 
 * action은 random policy를 따름
 
-
+![fig](https://bjo9280.github.io/assets/images/2020-11-30/grid_world.png)
 
 ## Bellman Expectation Equation for V<sup>π<sup>
 

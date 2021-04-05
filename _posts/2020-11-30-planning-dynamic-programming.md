@@ -51,7 +51,9 @@ categories: RL ReinforcementLearning
 
 # Policy iteration
 
-policy_iteration
+![fig](https://bjo9280.github.io/assets/images/2020-11-30/policy_iteration.png)
+
+
 
 ## Example: Policy iteration
 

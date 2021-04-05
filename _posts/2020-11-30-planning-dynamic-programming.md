@@ -1,5 +1,5 @@
 ---
-title: "3강: Planning by dynamic programming"
+title: "3강 Planning by dynamic programming"
 date: 2020-11-30 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---

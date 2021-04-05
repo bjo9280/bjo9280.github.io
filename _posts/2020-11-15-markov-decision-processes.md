@@ -1,5 +1,5 @@
 ---
-title: "2강: Markov Decision Processes"
+title: "2강 Markov Decision Processes"
 date: 2020-11-15 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---
@@ -132,6 +132,8 @@ categories: RL ReinforcementLearning
 
 ## Bellman Expectation Equation for V<sup>π</sup>, Q<sup>π</sup>
 
+*  v 는 처음에는 q로 구성이 되었었지만 현재는 결국 다음 state의 v로만 표현이 되며, q도 마찬가지로 처음에는 v로 구성이 되었었지만 현재는 다음 state의 q로 표현이 된다는 것을 발견할 수 있음
+
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/bellman_mdp4.png)
 
 ## Example: Bellman Expectation Equation in Student MDP 
@@ -144,9 +146,11 @@ categories: RL ReinforcementLearning
 
 # Optimal value Function
 
-* state-value function이 갖는 값이 최대값이 되도록 하는 max값이 최적의 v
+* state-value function이 갖는 값이 최대값이 되도록 함 
 
-* 마찬가지로 action-value function이 갖는 값이 최대값이 되도록 하는 max를 구한다면 이때의 q 를 q*로 표현하고 optimal action-value function이라고함
+* 마찬가지로 action-value function이 갖는 값이 최대값이 되도록 
+
+  
 
   ![fig](https://bjo9280.github.io/assets/images/2020-11-15/optibal_value.png)
 
@@ -160,7 +164,7 @@ categories: RL ReinforcementLearning
 
 # Optimal Policy
 
-* 모든 state에 대하여 만약 policy를 따르는 v(s)가 다른 policy'를 따르는 v(s)보다 크거나 같다면 policy가 policy' 보다도 더 좋거나 같다
+* 모든 state에 대하여, 만약 policy를 따르는 v(s)가   다른 policy'를 따르는 v(s)보다 크거나 같다면   policy가 policy' 보다도 더 좋거나 같은 결과를 내는 정책 
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-15/optimal_policy.png)
 

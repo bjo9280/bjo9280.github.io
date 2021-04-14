@@ -63,7 +63,7 @@ categories: RL ReinforcementLearning
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/ex_mc_policy_evaluation.png)
 
-the state(1, 1) is : (0.27+0.27-0.79)/3=-0.08
+* the state(1, 1) is : (0.27+0.27-0.79)/3=-0.08
 
 # Incremental Mean
 

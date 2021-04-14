@@ -4,9 +4,9 @@ date: 2020-11-30 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---
 
-> 3장에서는 2장에서 배운 MDP환경에서 Optimal policy를 찾는 방법
+> 3장에서는 2장에서 배운 MDP에서 Control 즉 Optimal policy을 찾는 방법에 대해 스터디 한다.
 >
-> 이해를 돕기위해 https://sumniya.tistory.com/10?category=781573에 예제를 참고함.
+> 이해를 돕기위해 [https://sumniya.tistory.com/10?category=781573](https://sumniya.tistory.com/10?category=781573)에서 예제를 참고함.
 
 # Dynamic Programming
 

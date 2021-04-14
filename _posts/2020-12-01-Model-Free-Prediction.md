@@ -69,6 +69,8 @@ categories: RL ReinforcementLearning
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/incrementalmean1.png)
 
+[추가설명링크](https://cveai.github.io/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2018/03/06/incremental.html)
+
  
 
 # Incremental MC updates

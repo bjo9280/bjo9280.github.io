@@ -71,7 +71,7 @@ the state(1, 1) is : (0.27+0.27-0.79)/3=-0.08
 
 # Incremental MC updates
 
-![fig](https://bjo9280.github.io/assets/images/2020-12-01/incrementalmean2.png)
+![fig](https://bjo9280.github.io/assets/images/2020-12-01/incrementalmean22.png)
 
 # Temporal-Difference Learning
 
@@ -99,8 +99,8 @@ the state(1, 1) is : (0.27+0.27-0.79)/3=-0.08
   * 반면 MC는 에피소드가 끝나서 리턴을 알게 될 때 까지 기다려야 함
 * Bias
   * 리턴 G<sub>t</sub>는 가치 함수 V<sub>π</sub> (S<sub>t</sub>)의 unbiased estimate
-  * R<sub>t+1</sub>+γV<sub>π</sub> (S<sub>(t+1)</sub>)도 unbiased
-  * 하지만 R<sub>t+1</sub>+γV(S<sub>(t+1)</sub>)은 biased
+  * R<sub>t+1</sub>+γV<sub>π</sub> (S<sub>t+1</sub>)도 unbiased
+  * 하지만 R<sub>t+1</sub>+γV(S<sub>t+1</sub>)은 biased
 * Variance
   * TD타겟은 리턴보다 variance가 훨씬 작음.
   * 리턴은 수많은 액션, 트랜지션, 보상과 관련이 되지만 TD 타겟은 한 개의 액션, 트랜지션, 보상과 관련이 있기 때문이다.

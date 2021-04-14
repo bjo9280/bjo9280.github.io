@@ -6,7 +6,7 @@ categories: RL ReinforcementLearning
 
 > 4장은 Dynamic programming 방법으로 MDP에서 planning하는 방법
 >
-> [https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html](https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html)에서 예시를 잠고
+> [https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html](https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html)에서 MC, TD예시를 참고
 
 # Model-Free Reinforcement Learning
 

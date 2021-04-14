@@ -10,7 +10,7 @@ categories: RL ReinforcementLearning
 
 # Model-Free Reinforcement Learning
 
-* MDP를 모르는 상황에서 환경과 직접적으로 상호작용을 하면서 경험을 통해 학습 하게 되는 방식
+* MDP를 모르는 상황에서 환경과 직접적으로 상호작용을 하면서 경험을 통해 학습 하게 되는 방식
 
 
 

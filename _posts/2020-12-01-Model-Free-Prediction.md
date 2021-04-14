@@ -53,7 +53,9 @@ categories: RL ReinforcementLearning
 
 # Example: Monte-Carlo Policy Evaluation(1)
 
-![fig](https://bjo9280.github.io/assets/images/2020-12-01/ex_mc_policy_evaluation.gif)
+![](https://mpatacchiola.github.io/blog/images/reinforcement_learning_model_free_monte_carlo_three_episodes_fast.gif){: width="50%" height="50%"}{: .center}
+
+
 
 
 

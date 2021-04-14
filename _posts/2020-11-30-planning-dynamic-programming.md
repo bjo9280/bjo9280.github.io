@@ -10,8 +10,8 @@ categories: RL ReinforcementLearning
 
 # Dynamic Programming
 
-* 시간에 따라 변화는 대상을 여러 개의 Process로 나누어 계획
-* 서브 문제를 해결하면 원래의 문제도 해결할 수 있다
+* 복잡한 문제를 간단한 여러 개의 문제로 나누어 푸는 방법
+* 서브 문제를 해결하면 원래의 문제도 해결할 수 있다. 
 
 ![fig](https://bjo9280.github.io/assets/images/2020-11-30/dynamic.png)
 

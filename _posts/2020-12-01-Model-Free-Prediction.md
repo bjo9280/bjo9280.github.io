@@ -4,17 +4,11 @@ date: 2020-12-01 00:00:00 +0900
 categories: RL ReinforcementLearning
 ---
 
-> 4장은 Dynamic programming 방법으로 MDP에서 planning하는 방법
+> 4장은 MDP를 모르는 상황에서 환경과 직접적으로 상호작용을 하면서 경험을 통해 학습 하게 되는 방식인 MC(Monte-Carlo)와 TD(Temporal-Difference) 대해 스터디
 >
 > [https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html](https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html)에서 MC, TD예시를 참고
 
-# Model-Free Reinforcement Learning
-
-* MDP를 모르는 상황에서 환경과 직접적으로 상호작용을 하면서 경험을 통해 학습 하게 되는 방식
-
-
-
-## Monte-Carlo Reinforcement Learning
+# Monte-Carlo Reinforcement Learning
 
 * MC는 경험으로부터 직접 배우는 방법론
 * Model free 방법론

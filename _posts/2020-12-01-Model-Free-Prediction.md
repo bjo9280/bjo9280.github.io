@@ -14,7 +14,7 @@ categories: RL ReinforcementLearning
 
 
 
-# Monte-Carlo Reinforcement Learning
+## Monte-Carlo Reinforcement Learning
 
 * MC는 경험으로부터 직접 배우는 방법론
 * Model free 방법론
@@ -24,7 +24,7 @@ categories: RL ReinforcementLearning
 * 간단한 아이디어
   * 가치 = 평균 리턴
 
-# Monte-Carlo Policy Evaluation 
+## Monte-Carlo Policy Evaluation 
 
 * 목표: Policy를 이용해 얻은 에피소드들로 부터 가치 함수 𝑉<sub>π</sub>  학습
 
@@ -42,7 +42,7 @@ categories: RL ReinforcementLearning
 
 * Monte-carlo policy evaluation은 기댓값 대신에 실제 리턴의 평균을 사용
 
-# Monte-Carlo Policy Evaluation
+## Monte-Carlo Policy Evaluation
 
 1. 상태 s의 가치를 평가하기 위해서
 2. 에피소드 안에서 상태 s를 방문할 때 마다
@@ -51,7 +51,7 @@ categories: RL ReinforcementLearning
 5. 가치는 그 평균으로 계산 V(s) = S(s)/N(s) 
 6. 대수의 법칙에 의해 N(s) -> ∞ 이면 V(s) -> 𝑉<sub>π(s)</sub> 
 
-# Example: Monte-Carlo Policy Evaluation(1)
+### Example: Monte-Carlo Policy Evaluation(1)
 
 ![](https://mpatacchiola.github.io/blog/images/reinforcement_learning_model_free_monte_carlo_three_episodes_fast.gif){: width="50%" height="50%"}{: .center}
 
@@ -59,21 +59,21 @@ categories: RL ReinforcementLearning
 
 
 
-# Example: Monte-Carlo Policy Evaluation(2)
+### Example: Monte-Carlo Policy Evaluation(2)
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/ex_mc_policy_evaluation.png)
 
 * the state(1, 1) is : (0.27+0.27-0.79)/3=-0.08
 
-# Incremental Mean
+### Incremental Mean
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/incrementalmean1.png)
 
-[추가설명링크](https://cveai.github.io/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2018/03/06/incremental.html)
+[추가 설명 링크](https://cveai.github.io/%EA%B8%B0%EA%B3%84%ED%95%99%EC%8A%B5/2018/03/06/incremental.html)
 
  
 
-# Incremental MC updates
+### Incremental MC updates
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/incrementalmean22.png)
 
@@ -84,7 +84,7 @@ categories: RL ReinforcementLearning
 * 에피소드가 끝나지 않아도 학습 가능
 * 추측을 추측으로 업데이트 하는 방법
 
-# MC and TD
+## MC and TD
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/mcandtd.png)
 
@@ -111,14 +111,14 @@ categories: RL ReinforcementLearning
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/mctd.png)
 
-# Dynamic Programming Backup
+## Dynamic Programming Backup
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/backup1.png)
 
-# Monte-Carlo Backup
+## Monte-Carlo Backup
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/backup2.png)
 
-# Temporal-Difference Backup
+## Temporal-Difference Backup
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/backup3.png)

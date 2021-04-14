@@ -6,7 +6,7 @@ categories: RL ReinforcementLearning
 
 > 4장은 Dynamic programming 방법으로 MDP에서 planning하는 방법
 >
-> https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html에서 예시를 잠고
+> [https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html](https://mpatacchiola.github.io/blog/2017/01/15/dissecting-reinforcement-learning-2.html)에서 예시를 잠고
 
 # Model-Free Reinforcement Learning
 
@@ -26,21 +26,21 @@ categories: RL ReinforcementLearning
 
 # Monte-Carlo Policy Evaluation 
 
-목표: Policy를 이용해 얻은 에피소드들로 부터 가치 함수 𝑉<sub>π</sub>  학습
+* 목표: Policy를 이용해 얻은 에피소드들로 부터 가치 함수 𝑉<sub>π</sub>  학습
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/mc_policy-evaluation1.png)
 
-리턴은 누적된 보상의 합
+* 리턴은 누적된 보상의 합
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/mc_policy-evaluation2.png)
 
-Value function은 리턴의 기댓값 임을 기억
+* Value function은 리턴의 기댓값 임을 기억
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/mc_policy-evaluation3.png)
 
 
 
-Monte-carlo policy evaluation은 기댓값 대신에 실제 리턴의 평균을 사용
+* Monte-carlo policy evaluation은 기댓값 대신에 실제 리턴의 평균을 사용
 
 # Monte-Carlo Policy Evaluation
 
@@ -88,9 +88,9 @@ the state(1, 1) is : (0.27+0.27-0.79)/3=-0.08
 
 ![fig](https://bjo9280.github.io/assets/images/2020-12-01/ex_td.png)
 
-At k=1 (1,1) : 0.0 + 0.1(-0.04 + 0.9 (0.0) – 0.0) = -0.004
-At k=3 (1,2) : 0.0 + 0.1(-0.04 + 0.9 (-0.004) – 0.0) = -0.00436
-At k=4 (1,2) : -0.004 + 0.1 (-0.04 + 0.9 (-0.00436) – (-0.004)) = -0.0079924
+* At k=1 (1,1) : 0.0 + 0.1(-0.04 + 0.9 (0.0) – 0.0) = -0.004
+* At k=3 (1,2) : 0.0 + 0.1(-0.04 + 0.9 (-0.004) – 0.0) = -0.00436
+* At k=4 (1,2) : -0.004 + 0.1 (-0.04 + 0.9 (-0.00436) – (-0.004)) = -0.0079924
 
 # 각 방법론의 특징
 

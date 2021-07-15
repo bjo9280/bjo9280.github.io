@@ -1,6 +1,6 @@
 ---
-![1](D:\temp\bjo9280.github.io\assets\images\2019-01-01\1.PNG)title: "SSD(Single Shot MultiBox Detector) 논문 리뷰"
-date: 2021-03-01 00:00:00 +0900
+title: "SSD(Single Shot MultiBox Detector) 논문 리뷰"
+date: 2019-01-01 00:00:00 +0900
 categories: objectdetection
 ---
 

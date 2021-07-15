@@ -1,6 +1,6 @@
 ---
 title: "Semantic segmentation 데이터생성 방법"
-date: 2021-04-01 00:00:00 +0900
+date: 2019-04-01 00:00:00 +0900
 categories: Segmantation
 ---
 

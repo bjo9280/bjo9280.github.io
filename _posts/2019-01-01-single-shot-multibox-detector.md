@@ -1,7 +1,7 @@
 ---
 title: "SSD(Single Shot MultiBox Detector) 논문 리뷰"
 date: 2019-01-01 00:00:00 +0900
-categories: objectdetection
+categories: ObjectDetection
 ---
 
 > Single Shot MultiBox Detector논문을 리뷰

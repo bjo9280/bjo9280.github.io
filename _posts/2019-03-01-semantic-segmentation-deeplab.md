@@ -8,7 +8,7 @@ categories: Segmantation
 
 # Segmentation
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/segmentation.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/segmentation.png)
 
 object detection (Faster rcnn) :  Object Detection은  각각의 객체를 분류가능하지만 Segmentation은 안됨 
 
@@ -18,24 +18,24 @@ Instance Segmentation (FCN on BBOX) : 두개를 더해서 Segmentation과 분류
 
 ## Fully Convolutional Networks
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/fcn.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/fcn.png)
 
 1. **Feature Extraction** : 일반적인 CNN의 구조에서 많이 보이는 conv layer들로 구성되어있음
 2. **Feature-level Classification** : 추출된 Feature map의 pixel 하나하나마다 classification을 수행합니다. 이 때 classification된 결과는 매우 coarse함
 3. **Upsampling** : coarse 한 결과를 backward strided convolution 을 통해 upsampling하여 원래의 image size로 키워줌
 4. **Segmentation** : class별 heatmap을 softmax를 이용하여 가장 높은 확률을 가지는 class만 모아서 한장의segmentation 이미지로 만듬
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/fcn1.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/fcn1.png)
 
 최종 결과물인 FCN-32s는 32배로 upsampling을 하기 때문에 detail이 많이 사라진 segmentation 결과를 보여줌
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/fcn2.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/fcn2.png)
 
 이 문제를 해결하기 위해 그 이전 layer의 feature map을 이용하는 skip combining 기법을 사용 
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/fcn3.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/fcn3.png)
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/fcn4.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/fcn4.png)
 
 Pooling을 하는 이유 : Global Feature를 multi-scale로 보기위해(classification관점)
 
@@ -86,11 +86,11 @@ pooling의 효과를 -> dilated convolution으로  parameter수를 유지하며 
 
 
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/artrous.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/artrous.png)
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/atrous1.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/atrous1.png)
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/atrous2.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/atrous2.png)
 
 
 
@@ -98,7 +98,7 @@ pooling의 효과를 -> dilated convolution으로  parameter수를 유지하며 
 
 후처리 과정으로 사용하여 픽셀 단위 예측의 정확도를 높일수있음
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/crf.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/crf.png)
 
 
 
@@ -109,9 +109,9 @@ pooling의 효과를 -> dilated convolution으로  parameter수를 유지하며 
 - Dilated Conv만으로는 Multi-scale을 본다고 하기 어렵다
 - Dilated Conv는 Pooling 대신 Resolution 유지를 위해 사용하는 것
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/deeplabv2_1.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/deeplabv2_1.png)
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/deeplabv2_2.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/deeplabv2_2.png)
 
 ## DeepLab v3
 
@@ -119,25 +119,25 @@ pooling의 효과를 -> dilated convolution으로  parameter수를 유지하며 
 
 when output stride = 16 and Multi Grid = (1, 2, 4), the three convolutions will have rates = 2 · (1, 2, 4) = (2, 4, 8) in the block4, respectively. 
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/deeplabv3_1.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/deeplabv3_1.png)
 
 ### Modified ASSP + Batch Normalization
 
 1x1 conv + GAP
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/deeplabv3_2.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/deeplabv3_2.png)
 
 ## DeepLab v3+
 
 ### Encoder-Decoder
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/deeplabv3plus.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/deeplabv3plus.png)
 
 
 
 ## Result
 
-![fig](https://bjo9280.github.io/assets/images/2021-03-01/result.png)
+![fig](https://bjo9280.github.io/assets/images/2019-03-01/result.png)
 
 DeepLabv3+ (Xception) 87.8 
 

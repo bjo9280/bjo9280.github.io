@@ -40,13 +40,13 @@ pip install labelme
 
 이미지파일명.json 파일로 생성됨(label명, point위치, image경로)
 
-![fig](https://bjo9280.github.io/assets/images/2021-04-01/annotation.png)
+![fig](https://bjo9280.github.io/assets/images/2019-04-01/annotation.png)
 
 ## Convert to Dataset
 
 labels.txt 파일생성(background, ignore포함한 label명)
 
-![fig](https://bjo9280.github.io/assets/images/2021-04-01/label.png)
+![fig](https://bjo9280.github.io/assets/images/2019-04-01/label.png)
 
 ```
 생성방법
@@ -60,7 +60,7 @@ labels.txt 생성된json경로 생성할폴더명
 #   - data_dataset_voc/SegmentationClassVisualization :시각화 이미지(semantic)
 ```
 
- ![fig](https://bjo9280.github.io/assets/images/2021-04-01/labelme.PNG)
+ ![fig](https://bjo9280.github.io/assets/images/2019-04-01/labelme.PNG)
 
 
 
@@ -78,4 +78,4 @@ for root, dirs, files in os.walk('{}/SegmentationClassPNG'.format(folder)):
         cv2.imwrite("{}/SegmentationClassAug/{}".format(folder, fname), arr)
 ```
 
-![fig](https://bjo9280.github.io/assets/images/2021-04-01/labelme2.png)
+![fig](https://bjo9280.github.io/assets/images/2019-04-01/labelme2.png)
